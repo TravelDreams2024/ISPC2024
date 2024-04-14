@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogo</title>
+
+    <!--bootstrap-->
+    <link href="bootstrap-5.1.1-dist/css/bootstrap.css" rel="stylesheet">
+
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">  
+    
+    <!--CSS-->
+
+    <link rel="stylesheet" href="../CSS/contenidocss.css">
+
+    <!--link font especial-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body class="cuerpom" id="cuerpoindex">
+    
+    <!--Inicio scroll to top-->
+    <div id="contflecha">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script type="text/javascript">var scrolltotop={setting:{startline:100,scrollto:0,scrollduration:1e3,fadeduration:[500,100]},controlHTML:'<img src="../img/flechaarriba.png" />',controlattrs:{offsetx:5,offsety:5},anchorkeyword:"#top",state:{isvisible:!1,shouldvisible:!1},scrollup:function(){this.cssfixedsupport||this.$control.css({opacity:0});var t=isNaN(this.setting.scrollto)?this.setting.scrollto:parseInt(this.setting.scrollto);t="string"==typeof t&&1==jQuery("#"+t).length?jQuery("#"+t).offset().top:0,this.$body.animate({scrollTop:t},this.setting.scrollduration)},keepfixed:function(){var t=jQuery(window),o=t.scrollLeft()+t.width()-this.$control.width()-this.controlattrs.offsetx,s=t.scrollTop()+t.height()-this.$control.height()-this.controlattrs.offsety;this.$control.css({left:o+"px",top:s+"px"})},togglecontrol:function(){var t=jQuery(window).scrollTop();this.cssfixedsupport||this.keepfixed(),this.state.shouldvisible=t>=this.setting.startline?!0:!1,this.state.shouldvisible&&!this.state.isvisible?(this.$control.stop().animate({opacity:1},this.setting.fadeduration[0]),this.state.isvisible=!0):0==this.state.shouldvisible&&this.state.isvisible&&(this.$control.stop().animate({opacity:0},this.setting.fadeduration[1]),this.state.isvisible=!1)},init:function(){jQuery(document).ready(function(t){var o=scrolltotop,s=document.all;o.cssfixedsupport=!s||s&&"CSS1Compat"==document.compatMode&&window.XMLHttpRequest,o.$body=t(window.opera?"CSS1Compat"==document.compatMode?"html":"body":"html,body"),o.$control=t('<div id="topcontrol">'+o.controlHTML+"</div>").css({position:o.cssfixedsupport?"fixed":"absolute",bottom:o.controlattrs.offsety,right:o.controlattrs.offsetx,opacity:0,cursor:"pointer"}).attr({title:"Scroll to Top"}).click(function(){return o.scrollup(),!1}).appendTo("body"),document.all&&!window.XMLHttpRequest&&""!=o.$control.text()&&o.$control.css({width:o.$control.width()}),o.togglecontrol(),t('a[href="'+o.anchorkeyword+'"]').click(function(){return o.scrollup(),!1}),t(window).bind("scroll resize",function(t){o.togglecontrol()})})}};scrolltotop.init();</script>
+        
+
+    </div>
+    <!--Fin scroll to top-->
+
+<!--Inicio header-->
+<header>
+    <div>
+        <!--Inicio barra de usuario-->
+        <div id="barrafija">
+            <!--logo de mi marca, opciones de registro o ingreso como usuario y carro de compras-->
+            <a href="../index.html" id="ingreso">Inicio</a>  
+            <a href="../productos/catalogo.html" id="ingreso">Categorias</a>
+            <a href="../pages/ingreso.html" id="ingreso">Ingresar</a>
+            <a href="../empresa/quienes_somos.html" id="ingreso">Empresa</a>
+            <a href="../productos/carrito.html">
+                <img src="../img/carrito.png" alt="carrodecompras" id="carrito">
+            </a>
+        </div>
+        <!--Fin barra de usuario-->
+
+        <div id="travel" class="travel" style="background-color:#239398;">
+            <img src="../img/img/easy travel rectangular.png" width="300" id="logo">                
+        </div>
+    </div>  
+</header>
+<!--Fin header-->
+
+<!--Inicio seccion 2, CATEGORÍAS-->
+<section id="seccioncatego">
+<div>
+    
+    <!--imagenes fila 1-->
+    <div id="dl">
+                <div class="contenedors2">
+                    <img src="../img/img/playa44.png" alt="parte1" class="img-thumbnail">
+                    <div class="hijos2">
+                        <h3 class="ache3">Playa</h3>
+                    </div>
+                </div>
+    
+                <div class="contenedors2">
+                    <img src="../img/img/Italia.jpeg" alt="parte2" class="img-thumbnail">
+                    <div class="hijos2">
+                        <h3 class="ache3">Italia</h3>
+                    </div>
+                </div>
+    </div>
+
+    <!--imagenes fila 2-->
+    <div id="be">
+                <div class="contenedors2">
+                    <img src="../img/img/Mexico.jpeg" alt="parte3" class="img-thumbnail">
+                    <div class="hijos2">
+                        <h3 class="ache3">Mexico</h3>
+                    </div>
+                </div>
+                <div class="contenedors2">
+                    <img src="../img/img/gastro00.png" alt="parte4" class="img-thumbnail">
+                    <div class="hijos2">
+                        <h3 class="ache3">Gastronomia</h3>
+                    </div>
+                </div>
+    </div>
+
+    <!--imagenes fila 3-->
+    <div id="dfr">
+                <div class="contenedors2">
+                    <img src="../img/img/trekking00.png" alt="parte5" class="img-thumbnail">
+                    <div class="hijos2">
+                        <h3 class="ache3">Montañas</h3>
+                    </div>
+                
+    </div>
+
+
+</section>
+<!--Fin seccion 2-->
+<footer>
+
+    <!--Contacto-->
+    <section id="fcontacto">
+        <div class="contacto_items">
+
+            <!--contacto (tel,direccion,mail)-->
+            <div id="divcon" class="logos">
+                <h2>
+                    <a href="../pages/formulario.HTML" class="ache2">CONTACTO</a>
+                </h2>
+                <div id="divlista_con">
+                    <ul id="divcontacto">
+                        <li> area58traveleasy@gmail.com</li>
+                        <li>0351 8 456 123</li>
+                        <li>Av Siempre viva 789 Córdoba, Argentina</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--atención al cliente-->
+            <div id="divate" class="logos">
+                
+                <div id="divlista_ate">
+                    <ul id="divatencion">
+                        <li>
+                            <a href="../Legales.html">Política de privacidad</a>
+                        </li>
+                        <li>
+                            <a href="../Legales.html">Preguntas frecuentes</a>
+                        </li>
+                        <li>
+                            <a href="../Legales.html">Legales</a>
+                        </li>
+                        <li>
+                            <a href="Legales.html">Terminos y condiciones</a>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+
+            <!--newspaper de la empresa-->
+            <div id="divnewsletter" class="logos">
+                <h2 class="ache2">Newsletter</h2>
+                <div class="row mb-3 d-flex justify-content-evenly">
+                    <div class="col-sm-10 mb-2">
+                        <input type="email" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Email">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                <!--formulario para completar con mail-->
+                <!--boton para aceptar-->
+            </div>
+        </div>
+    </section>
+
+    <!--Info-->
+    <section id="finfo">
+        
+        <!--redes-->
+        <div class="redes-container"> <!-- ACÁ FALTAN LOS LINKS REALES A LAS REDES, PUSE LOS SITIOS PRINCIPALES POR FUNCIONALIDAD-->
+            <ul>
+                <li> <a href="https://facebook.com/" class="facebook"> <i class="fab fa-facebook-f"></i></a></li>
+                <li> <a href="https://instagram.com/" class="instagram"> <i class="fab fa-instagram"></i></a></li>
+                <li> <a href="https://twitter.com/" class="twitter"> <i class="fab fa-twitter"></i></a></li>
+            </ul>
+        </div>
+
+        <!--copyright-->
+        <div id="copydesk">
+            <h4 class="ache4">Copyright 2022 - 2022 | Travel Easy | Todos los derechos reservados</h4>
+        </div>
+
+        <!--copyright mobile-->
+        <div id="copymobile">
+            <h4 class="ache4">Copyright 2022 - 2022</h4>
+            <h4 class="ache4">| Travel Easy |</h4>
+            <h4 class="ache4">Todos los derechos reservados</h4>
+        </div>
+
+        <!--diseñador web---->
+        <div id="disedesk">
+            <h4 class="ache4">|Hecho por Patricia Solis|</h4>
+        </div>
+
+        
+    </section>
+
+</footer>  
+</body>
+</html>
