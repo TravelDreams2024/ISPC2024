@@ -1,3 +1,8 @@
+![Angular](https://img.shields.io/badge/Angular-12.x-red)
+![JSON](https://img.shields.io/badge/JSON-Any-brightgreen)
+![JSON Server](https://img.shields.io/badge/JSON%20Server-0.x-yellow)
+![Django](https://img.shields.io/badge/Django-4.x-blue)
+
 ![banner](https://github.com/rominarg/angular17_ispc/assets/45200064/4db5f80d-d05b-4bb3-95b9-b1b8333c5dff)
 
 # PROYECTO Travel Dreams
