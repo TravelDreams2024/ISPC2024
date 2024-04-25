@@ -1,4 +1,4 @@
-![Angular](https://img.shields.io/badge/Angular-12.x-red)
+![Angular](https://img.shields.io/badge/Angular-17.x-red)
 ![JSON](https://img.shields.io/badge/JSON-Any-brightgreen)
 ![JSON Server](https://img.shields.io/badge/JSON%20Server-0.x-yellow)
 ![Django](https://img.shields.io/badge/Django-4.x-blue)
