@@ -30,3 +30,5 @@ Soto Valenzuela, Juan Gabriel
 
 Link del Repositorio de Referencia (Anterior):
 https://github.com/AnahiNicoli/FullStack_ISPC/
+Link al Wiki general del proyecto Travel Dreams:
+https://github.com/TravelDreams2024/ISPC2024/wiki
