@@ -15,6 +15,5 @@ export const routes: Routes = [
     {path:"nosotros", component: NosotrosComponent},
     {path:"destinos", component: DestinosComponent},
     {path:"contacto", component: ContactoComponent},
-    {path:"footer", component: FooterComponent},
     {path: '**', component: Pagina404Component}
 ];
