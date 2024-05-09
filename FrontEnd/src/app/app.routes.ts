@@ -9,17 +9,13 @@ import { Pagina404Component } from './pages/pagina404/pagina404.component';
 import { FooterComponent } from './shared/footer/footer.component';
 
 export const routes: Routes = [
-    {path: "home", component:HomeComponent},
+    {path: "inicio", component:HomeComponent},
     {path:"iniciar-sesion", component:IniciarSesionComponent},
     {path:"registro", component:RegistroComponent},
     {path:"nosotros", component: NosotrosComponent},
     {path:"destinos", component: DestinosComponent},
     {path:"contacto", component: ContactoComponent},
-<<<<<<< HEAD
-    {path: '**', component: Pagina404Component}
-=======
     {path:"footer", component: FooterComponent},
     {path: '**', component: Pagina404Component},
     { path: '',   redirectTo: '/home', pathMatch: 'full' },
->>>>>>> RominaNavarrete
 ];
