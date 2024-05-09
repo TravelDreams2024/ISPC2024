@@ -15,5 +15,11 @@ export const routes: Routes = [
     {path:"nosotros", component: NosotrosComponent},
     {path:"destinos", component: DestinosComponent},
     {path:"contacto", component: ContactoComponent},
+<<<<<<< HEAD
     {path: '**', component: Pagina404Component}
+=======
+    {path:"footer", component: FooterComponent},
+    {path: '**', component: Pagina404Component},
+    { path: '',   redirectTo: '/home', pathMatch: 'full' },
+>>>>>>> RominaNavarrete
 ];
