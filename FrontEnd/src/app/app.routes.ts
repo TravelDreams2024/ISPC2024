@@ -6,16 +6,16 @@ import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 import { DestinosComponent } from './pages/destinos/destinos.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { Pagina404Component } from './pages/pagina404/pagina404.component';
-import { FooterComponent } from './shared/footer/footer.component';
+
 
 export const routes: Routes = [
-    {path: "inicio", component:HomeComponent},
-    {path:"iniciar-sesion", component:IniciarSesionComponent},
-    {path:"registro", component:RegistroComponent},
-    {path:"nosotros", component: NosotrosComponent},
+    {path: '', component: HomeComponent},
+    {path: "Home", component:HomeComponent},
+    {path: "Inicio", component:HomeComponent},
     {path:"destinos", component: DestinosComponent},
     {path:"contacto", component: ContactoComponent},
-    {path:"footer", component: FooterComponent},
+    {path:"nosotros", component: NosotrosComponent},
+    {path:"iniciar-sesion", component:IniciarSesionComponent},
+    {path:"registro", component:RegistroComponent},
     {path: '**', component: Pagina404Component},
-    { path: '',   redirectTo: '/home', pathMatch: 'full' },
 ];
