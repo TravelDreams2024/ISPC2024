@@ -1,1 +1,82 @@
-<p>registro works!</p>
+<body>
+    
+    <div class="container">
+        <form class="row"  [formGroup]="formGroup" (ngSubmit)="onSubmit()" (ngSubmit)="onEnviar($event)">
+            <h1>REGISTRO</h1>
+            <!-- Campo de nombre -->
+            <div class="col-6">
+                <input type="text" class="form-control" formControlName="name" id="name" placeholder="Ingresa tu Nombre">
+                <label for="name" class="form-label">Nombre</label>
+                <div *ngIf="formGroup.controls.name.errors && formGroup.controls.name.touched">
+                    <p *ngIf="formGroup.controls.name.errors['required']" class="text-danger">
+                        El nombre es requerido.
+                    </p>
+                </div>
+            </div>
+            <!-- Campo de apellido -->
+            <div class="col-6">
+                <input type="text" class="form-control" formControlName="lastName" id="lastName" placeholder="Ingresa tu Nombre">
+                <label for="lastName" class="form-label">Apellido</label>
+                <div *ngIf="formGroup.controls.name.errors && formGroup.controls.name.touched">
+                    <p *ngIf="formGroup.controls.name.errors['required']" class="text-danger">
+                        El nombre es requerido.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Campo de email -->
+            <div class="col-12">
+                <input type="email" class="form-control" formControlName="email" id="inputEmail" placeholder="email@example.com">
+                <label for="inputEmail" class="email">Email</label>
+                <div *ngIf="formGroup.controls.email.errors && formGroup.controls.email.touched">
+                    <p *ngIf="formGroup.controls.email.errors['required']" class="text-danger">
+                        El email es requerido.
+                    </p>
+                    <p *ngIf="formGroup.controls.email.errors['email']" class="text-danger">
+                        El formato del email debe ser válido.
+                    </p>
+                </div>                 
+            </div>
+
+            <!-- Campo de contraseña -->
+            <div class="col-12">
+                <input type="password" class="form-control" formControlName="password" id="inputPass" placeholder="Ingresa tu contraseña">
+                <label for="inputPass" class="form-label">Contraseña</label>
+                <div *ngIf="formGroup.controls.password.errors && formGroup.controls.password.touched">
+                    <p *ngIf="formGroup.controls.password.errors['required']" class="text-danger">
+                        La contraseña es requerida.
+                    </p>
+                    <p *ngIf="formGroup.controls.password.errors['minlength']" class="text-danger">
+                        La contraseña debe tener al menos 8 caracteres.
+                    </p>
+                    <p *ngIf="formGroup.controls.password.errors['maxlength']" class="text-danger">
+                        La contraseña no puede tener más de 20 caracteres.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Campo de repetir contraseña -->
+<div class="col-12">
+    <input type="password" class="form-control" formControlName="password2" id="inputPass2" placeholder="Vuelva a ingresar contraseña">
+    <label for="inputPass2" class="form-label">Repetir contraseña</label>
+    <div *ngIf="formGroup.controls.password2.errors && formGroup.controls.password2.touched">
+        <p *ngIf="formGroup.controls.password2.errors['required']" class="text-danger">
+            Debes repetir tu contraseña.
+        </p>
+        <p *ngIf="formGroup.controls.password2.errors['minlength']" class="text-danger">
+            La contraseña debe tener al menos 8 caracteres.
+        </p>
+        <p *ngIf="formGroup.controls.password2.errors['maxlength']" class="text-danger">
+            La contraseña no puede tener más de 20 caracteres.
+        </p>
+    </div>
+</div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary" (click)="clickRegister">Registrarse</button>
+            </div>
+
+        </form>
+    </div>
+</body>
+
