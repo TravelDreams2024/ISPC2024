@@ -30,6 +30,11 @@
 }
 
 .btn-custom {
-  background: #240b5c;
+  background: #240B5C;
   color: white;
+}
+
+.custom-btn {
+  background: #240B5C;
+  color:  white;
 }
