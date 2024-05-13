@@ -1,0 +1,40 @@
+.flex-shrink-0 {
+    flex-shrink: 0;
+  }
+  
+  .py-5 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  .container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .px-5 {
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .my-5 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  .btn-custom {
+    background: #240B5C;
+    color: white;
+  }
+  
+.custom-btn {
+    background: #240B5C;
+    color: white;
+  }
