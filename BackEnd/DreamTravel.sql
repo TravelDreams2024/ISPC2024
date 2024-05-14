@@ -44,6 +44,8 @@ CREATE TABLE IF NOT exists DESTINOS(
 
 CREATE TABLE IF NOT exists USUARIO (
 	id_usuario INT NOT NULL PRIMARY KEY auto_increment,
+    nombre_usuario VARCHAR (100) NOT NULL,
+    apellido_usuario VARCHAR (100) NOT NULL,
 	passw VARCHAR (100) NOT NULL,
     direccion VARCHAR (300) NOT NULL,
     dni INT NOT NULL,
