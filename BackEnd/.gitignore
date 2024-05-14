@@ -1,0 +1,35 @@
+# .gitignore for a Django project
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django
+*.log
+db.sqlite3
+/media
+/static
+
+# Secret key
+*.secret_key
+
+# Environment variables
+.env
+
+# Virtual environment
+venv/
+.env/
+
+# Ignore local settings
+settings_local.py
+
+# Ignore development-specific database configuration
+*/settings/dev.py
+
+# Ignore production-specific database configuration
+*/settings/prod.py
+
+# Ignore macOS system files
+.DS_Store
