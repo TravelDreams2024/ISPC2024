@@ -11,18 +11,9 @@
     width: 500px;
     height: 600px;
     padding: 30px;
-    margin: auto;
-    margin-top: 70px;
-    margin-bottom: 70px;
     background-color: white;
 }
 
-.col-6 {
- 
-}
-.col {
-    
-}
 
 .btn {
     display: flex;
