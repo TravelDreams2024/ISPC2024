@@ -1,6 +1,7 @@
-.carousel-caption h1 {
+.carousel-caption h1 {             /* Texto Grande de Imagen 1 */
     font-weight: bold;
-    color: #240B5C;
+  /*   color: rgb(252, 89, 89); */
+    /* color: #240B5C; */          /* Lo comente para que el texto sea blanco */
     padding-top: 100px;
 }
 
@@ -24,21 +25,44 @@
     color: #ffffff; 
 }
 
-.slider2 h1 {
+/* ▼▼▼▼▼ Estilos de los textos las imagenes ▼▼▼▼▼  */
+/* Tener en cuenta que los estilos estan aplicados sobre los Selectores <p> y <h>, si se cambia en html se debe reconfigurar aqui */
+
+/* .slider1 h1 {                      Texto Grande Imagen 1 - Esta comentado por si se necesitara despues
+  color: #ffffff;
+  font-weight: bold;
+} */
+
+.slider1 p {                            /* Texto chico Imagen 1 */
+    color: #ffffff;
+    background-color: rgba(69, 71, 167, 0.5);   
+    font-weight: bold;
+  }
+
+.slider2 h2 {                           /* Texto Grande de Imagen 2 */
   color: white; 
   font-weight: bold;
 }
 
-.slider2 p {
-  color: rgb(0, 0, 0);
+.slider2 p {                            /* Texto chico de Imagen 2 */
+  color: white;
   font-weight: bold;
 }
 
-
-.slider3 h2 {
+.slider3 h2 {                           /* Texto Grande de Imagen 3 */
   font-weight: bold;
+  color: rgb(0, 0, 0);
   color: white;
 }
+
+/* .slider3 p {                           Texto Chico de Imagen 3 - Esta comentado por si se necesitara despues
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  color: white;
+}
+ */
+
+/* ▲▲▲▲▲ FIN - Estilos de los textos las imagenes ▲▲▲▲▲  */
 
 .cont_slider {
     max-width: 1866px;

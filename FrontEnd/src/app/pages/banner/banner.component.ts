@@ -13,7 +13,7 @@ export class BannerComponent {
   titulo1: string = "Hacemos Realidad tus Sueños";
   subtitulo1: string = "¡Vive con nosotros la mejor Experiencia en Giras de Estudio que siempre quisiste!";
   titulo2: string = "¡Viajes que inspiran, destinos que cautivan!";
-  subtitulo2: string = "Descubre nuevos horizontes con nosotros:";
-  titulo3: string = "Explora el mundo con confianza:";
+  subtitulo2: string = "Descubre nuevos horizontes con nosotros";
+  titulo3: string = "Explora el mundo con confianza";
   subtitulo3: string = "¡Donde cada destino es una aventura, cada experiencia es inolvidable!";
 }
