@@ -1,4 +1,4 @@
-.flex-shrink-0 {
+main {
   flex-shrink: 0;
 }
 
@@ -15,11 +15,6 @@
   margin-left: auto;
 }
 
-.px-5 {
-  padding-right: 3rem;
-  padding-left: 3rem;
-}
-
 .text-center {
   text-align: center;
 }
@@ -29,12 +24,7 @@
   margin-bottom: 3rem;
 }
 
-.btn-custom {
-  background: #240B5C;
-  color: white;
-}
-
-.custom-btn {
-  background: #240B5C;
-  color:  white;
+.rounded-circle {
+  max-width: 150px;
+  height: auto;
 }

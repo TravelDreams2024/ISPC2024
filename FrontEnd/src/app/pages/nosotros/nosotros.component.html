@@ -1,34 +1,32 @@
-<main class="flex-shrink-0">
+<main>
+  <div class="container">
     <section class="py-5">
-      <div class="container px-5">
-        <div class="row justify-content-center">
-          <div class="col-lg-8 col-xxl-6">
-            <div class="text-center my-5">
-              <p>{{ mision }}</p>
-            </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-xxl-6">
+          <div class="text-center my-5">
+            <h3 class="section-heading mb-5">¿Quiénes Somos?</h3>
+            <p>{{ mision }}</p>
           </div>
         </div>
       </div>
     </section>
-  
-    <section class="p-5 page-section bg-light" id="team">
-      <div class="container">
-        <div class="text-center">
-          <h2 class="section-heading text-uppercase">Nuestro Equipo</h2>
-        </div>
-        <div class="row">
-          <div class="col-md-4" *ngFor="let miembro of equipo">
-            <div>
-              <img class="rounded-circle img-fluid" [src]="miembro.imagen" alt="..." />
-              <h5>{{ miembro.nombre }}</h5>
-              <p class="text-muted">{{ miembro.rol }}</p>
-              <a class="btn custom-btn btn-social mx-2" [href]="miembro.twitter"><i class="fab fa-twitter"></i></a>
-              <a class="btn custom-btn btn-social mx-2" [href]="miembro.facebook"><i class="fab fa-facebook-f"></i></a>
-              <a class="btn custom-btn btn-social mx-2" [href]="miembro.linkedin"><i class="fab fa-linkedin-in"></i></a>
-              <a class="btn custom-btn" [routerLink]="miembro.perfil">Ver Perfil</a>
-            </div>
+
+    <section class="p-5 page-section" id="team">
+      <div class="text-center">
+        <h3 class="section-heading mb-5">Nuestro Equipo</h3>
+      </div>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let miembro of equipo">
+          <div>
+            <img class="rounded-circle img-fluid" [src]="miembro.imagen" alt="Foto de perfil de {{ miembro.nombre }}" />
+            <h5>{{ miembro.nombre }}</h5>
+            <p>{{ miembro.rol }}</p>
+            <a class="btn btn-social mx-2" [href]="miembro.github"><i class="fab fa-github"></i></a>
+            <a class="btn btn-social mx-2" [href]="miembro.linkedin"><i class="fab fa-linkedin-in"></i></a>
+            <a class="btn" [routerLink]="miembro.perfil">Ver Perfil</a>
           </div>
         </div>
       </div>
     </section>
-  </main>
+  </div>
+</main>
