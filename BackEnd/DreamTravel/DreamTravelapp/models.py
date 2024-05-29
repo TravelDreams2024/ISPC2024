@@ -34,11 +34,11 @@ class Categorias(models.Model):
 
 #Clase de usuario   
 class Usuarios(models.Model):
-    
     id_usuario = models.AutoField(primary_key=True)
     nombre_usuario = models.CharField(max_length=100)
     apellido_usuario = models.CharField(max_length=100)
     passw = models.CharField(max_length=100)
+    rol = models.CharField(default='usuario', max_length=100, blank=False)
     direccion = models.CharField(max_length=100)
     dni = models.CharField(max_length=8, validators=[MinLengthValidator(7), MaxLengthValidator(8)])
     telefono = models.CharField(max_length=50)
@@ -81,3 +81,33 @@ class Destinos(models.Model):
         return self.nombre_Destino
     def __unicode__(self):
         return self.nombre_Destino
+
+class Nosotros(models.Model):
+    id_nosotros = models.AutoField(primary_key=True)
+    nombre_apellido= models.CharField(max_length=100)
+    rol= models.CharField(default='desarrollador', max_length=100, blank=False) 
+    github= models.CharField(max_length=100)
+    linkedin= models.CharField(max_length=100)
+    imagen= models.CharField(max_length=100)
+    class Meta:
+        db_table = 'nosotros'
+        verbose_name = 'Nosotros'
+        verbose_name_plural = 'Nosotros'
+    def __str__(self):
+        return self.nosotros
+    def __unicode__(self):
+        return self.nosotros
+
+class Carrito(models.Model):
+    id_compra = models.AutoField(primary_key=True)
+    cantidad = models.DecimalField(max_digits=3, decimal_places=0, validators=[positive_price_validator])
+    id_metodoPago = models.ForeignKey(MetodoPago, db_column='id_metodoPago', on_delete=models.CASCADE)
+    id_destino = models.ForeignKey(Destinos, db_column='id_destino', on_delete=models.CASCADE)
+class Meta:
+    db_table = 'carrito'
+    verbose_name = 'carrito'
+    verbose_name_plural = 'carrito'
+def __str__(self):
+        return self.carrito
+def __unicode__(self):
+        return self.carrito
