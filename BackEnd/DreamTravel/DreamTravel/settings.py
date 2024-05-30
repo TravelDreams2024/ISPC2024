@@ -75,11 +75,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'DreamTravel',
         'USER': 'root',
-        'PASSWORD': 'DrHouse..35',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS':{
             'sql_mode': 'traditional'
+            
         }
     }
 }
