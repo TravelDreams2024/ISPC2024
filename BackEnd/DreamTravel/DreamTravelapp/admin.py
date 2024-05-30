@@ -10,7 +10,7 @@ from .models import Carrito
 
 #Registro los modelos
 class UsuariosAdmin(admin.ModelAdmin):
-    list_display = ( 'nombre_usuario', 'apellido_usuario', 'direccion', 'dni', 'telefono', 'mail',)
+    list_display = ( 'id_usuario','nombre_usuario', 'apellido_usuario', 'direccion', 'dni', 'telefono', 'mail',)
     
 class DestinosAdmin(admin.ModelAdmin):
     list_display = ('id_destino', 'nombre_Destino', 'descripcion','precio_Destino', 'fecha_salida', 'cantidad_Disponible', 'image',)
