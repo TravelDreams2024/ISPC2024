@@ -12,6 +12,5 @@ router.register(r'destinos',views.DestinosViewSet)
 
 #URLS
 urlpatterns = [
-    #path('', include(router.urls)),
-    path('api/v1/', include(router.urls)),
+    path('', include(router.urls)),
 ]
