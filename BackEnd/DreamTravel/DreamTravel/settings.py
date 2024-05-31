@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'DreamTravelapp',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
