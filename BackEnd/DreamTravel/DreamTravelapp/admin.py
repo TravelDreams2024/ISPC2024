@@ -24,7 +24,7 @@ class MetodoPagoAdmin(admin.ModelAdmin):
     list_display = ('id_metodoPago','nombrePago',)
 
 class NosotrosAdmin(admin.ModelAdmin):
-    list_display = ('id_nosotros','nombre_apellido', 'id_rol', 'github', 'linkedin', 'imagen',)
+    list_display = ('id_nosotros','nombre_apellido', 'github', 'linkedin', 'imagen','id_rol',)
 
 
 class CarritoAdmin(admin.ModelAdmin):
