@@ -7,6 +7,7 @@ from .models import Categorias
 from .models import MetodoPago
 from .models import Nosotros
 from .models import Carrito
+from .models import Rol
 
 #Registro los modelos
 class UsuariosAdmin(admin.ModelAdmin):
@@ -23,11 +24,14 @@ class MetodoPagoAdmin(admin.ModelAdmin):
     list_display = ('id_metodoPago','nombrePago',)
 
 class NosotrosAdmin(admin.ModelAdmin):
-    list_display = ('id_nosotros','nombre_apellido', 'rol', 'github', 'linkedin', 'imagen',)
+    list_display = ('id_nosotros','nombre_apellido', 'id_rol', 'github', 'linkedin', 'imagen',)
 
 
 class CarritoAdmin(admin.ModelAdmin):
     list_display = ('id_compra','cantidad','id_metodoPago', 'id_destino',)
+
+class RolAdmin(admin.ModelAdmin):
+    list_display = ('id_rol','nombre_rol',)
     
 
 admin.site.register(Usuarios, UsuariosAdmin)
@@ -36,3 +40,4 @@ admin.site.register(Categorias, CategoriasAdmin)
 admin.site.register(MetodoPago, MetodoPagoAdmin)
 admin.site.register(Nosotros, NosotrosAdmin)
 admin.site.register(Carrito,CarritoAdmin)
+admin.site.register(Rol,RolAdmin)

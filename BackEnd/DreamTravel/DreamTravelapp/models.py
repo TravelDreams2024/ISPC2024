@@ -2,8 +2,20 @@ from django.db import models
 
 from django.core.validators import MinLengthValidator, MaxLengthValidator
 from django.core.exceptions import ValidationError
-    
-  
+
+
+#Rol
+class Rol(models.Model):
+    id_rol = models.AutoField(primary_key=True)
+    nombre_rol= models.CharField(default='usuario', max_length=100, blank=False)
+    class Meta:
+        db_table = 'rol'
+        verbose_name = 'rol'
+        verbose_name_plural = 'roles'
+    def __str__(self):
+            return self.rol
+    def __unicode__(self):
+            return self.rol
    
 #Metodo de pago del usuario 
 class MetodoPago(models.Model):
@@ -20,15 +32,15 @@ class MetodoPago(models.Model):
     
 #Categorias de los viajes
 class Categorias(models.Model):
-    id_categoria = models.AutoField(primary_key=True)
-    nombreCategoria = models.CharField(max_length=150)
-    class Meta:
+        id_categoria = models.AutoField(primary_key=True)
+        nombreCategoria = models.CharField(max_length=150)
+class Meta:
         db_table = 'categorias'
         verbose_name = 'Categoria'
         verbose_name_plural = 'Categorias'
-    def __str__(self):
+def __str__(self):
         return self.nombreCategoria
-    def __unicode__(self):
+def __unicode__(self):
         return self.nombreCategoria
        
 
@@ -38,12 +50,12 @@ class Usuarios(models.Model):
     nombre_usuario = models.CharField(max_length=100)
     apellido_usuario = models.CharField(max_length=100)
     passw = models.CharField(max_length=100)
-    rol = models.CharField(default='usuario', max_length=100, blank=False)
     direccion = models.CharField(max_length=100)
     dni = models.CharField(max_length=8, validators=[MinLengthValidator(7), MaxLengthValidator(8)])
     telefono = models.CharField(max_length=50)
     mail = models.EmailField(unique=True)
     id_metodoPago = models.ForeignKey(MetodoPago, db_column='id_metodoPago', on_delete=models.CASCADE,)
+    id_rol = models.ForeignKey(Rol, db_column='id_rol', on_delete=models.CASCADE,default='1',)
     class Meta:
         db_table = 'usuario'
         verbose_name = 'Usuario'
@@ -84,11 +96,11 @@ class Destinos(models.Model):
 
 class Nosotros(models.Model):
     id_nosotros = models.AutoField(primary_key=True)
-    nombre_apellido= models.CharField(max_length=100)
-    rol= models.CharField(default='desarrollador', max_length=100, blank=False) 
+    nombre_apellido= models.CharField(max_length=100) 
     github= models.CharField(max_length=100)
     linkedin= models.CharField(max_length=100)
     imagen= models.CharField(max_length=100)
+    id_rol = models.ForeignKey(Rol, db_column='id_rol', on_delete=models.CASCADE,default='1',)
     class Meta:
         db_table = 'nosotros'
         verbose_name = 'Nosotros'
@@ -111,3 +123,6 @@ def __str__(self):
         return self.carrito
 def __unicode__(self):
         return self.carrito
+
+
+
