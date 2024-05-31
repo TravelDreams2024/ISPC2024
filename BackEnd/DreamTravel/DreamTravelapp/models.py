@@ -10,12 +10,12 @@ class Rol(models.Model):
     nombre_rol= models.CharField(default='usuario', max_length=100, blank=False)
     class Meta:
         db_table = 'rol'
-        verbose_name = 'rol'
+        verbose_name = 'Rol'
         verbose_name_plural = 'roles'
     def __str__(self):
-            return self.rol
+        return self.nombre_rol
     def __unicode__(self):
-            return self.rol
+        return self.nombre_rol
    
 #Metodo de pago del usuario 
 class MetodoPago(models.Model):
