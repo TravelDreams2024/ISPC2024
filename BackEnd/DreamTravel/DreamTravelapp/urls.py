@@ -1,17 +1,12 @@
-#URLS PARA API REST
 from rest_framework import routers
-from DreamTravelapp import views
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import DestinosViewSet
+from .views import DestinosViewSet, user_api_view, user_detail_api_view
 
-
-#Creamos la ruta
 router = routers.DefaultRouter()
-router.register(r'destinos',views.DestinosViewSet)
+router.register(r'destinos', DestinosViewSet)
 
-#URLS
 urlpatterns = [
-    #path('', include(router.urls)),
-    path('api/v1/', include(router.urls)),
+    path('usuarios/', user_api_view, name='usuarios_api'),                              # http://127.0.0.1:8000/api/v1/usuarios/
+    path('usuarios/<int:pk>/', user_detail_api_view, name='usuarios_detail_api_view'),  # http://127.0.0.1:8000/api/v1/usuarios/1/
+    path('', include(router.urls)),
 ]
