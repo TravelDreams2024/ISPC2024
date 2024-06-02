@@ -5,8 +5,6 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class NosotrosService {
-
-  constructor() { }
   url: string= "http://localhost:3000/profesional";
 
   constructor(private http:HttpClient) { }
@@ -26,7 +24,7 @@ export class NosotrosService {
       // Backend rechazó la petición y devuelve una respuesta con un código de estado.
       
       console.error(
-        Backend returned code ${error.status}, body was: , error.error);
+        `Backend returned code ${error.status}, body was: `, error.error);
     }
     // Observable falla, retorna un mensaje de error genérico para el usuario.
     return throwError(() => new Error('Something bad happened; please try again later.'));
