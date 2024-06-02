@@ -13,5 +13,5 @@ export class Destino
         this.name=name;
         this.description=description;
         this.precio=precio;
-    }
+    }
 }

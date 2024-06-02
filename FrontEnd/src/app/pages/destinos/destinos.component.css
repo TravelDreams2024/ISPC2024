@@ -6,3 +6,21 @@
 .card {
     flex: 1 1 auto; 
   }
+
+  .precio {
+    font-weight: bold;
+    color: #240B5C; 
+  }
+
+  .bordered-btn {
+    border: 3px solid #240B5C;
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    color: #240B5C;
+    font-weight: bold;
+  }
+
+  .card-title {
+    color: #240B5C!important;
+    font-weight: bold;
+  }
