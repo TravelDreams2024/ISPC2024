@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { DestinosService } from '../../services/destinos.service';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-destinos',
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './destinos.component.html',
   styleUrl: './destinos.component.css'
 })
