@@ -22,6 +22,7 @@ db.sqlite3
 env/
 venv/
 .env/
+Ariel/
 
 # Ignore local settings
 settings_local.py
