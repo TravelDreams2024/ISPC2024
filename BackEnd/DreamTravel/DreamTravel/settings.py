@@ -149,5 +149,5 @@ CORS_ALLOWED_ORIGINS = [
 ]
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',  # default
-    'your_app.backends.EmailBackend',  # custom backend
+    
 )
