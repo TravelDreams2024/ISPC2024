@@ -1,24 +1,18 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
  body{
     background-color: rgb(239, 239, 239);
+    padding-left: 35%;
  }
 .row {
-    display: flex;
+   
     width: 500px;
     height: 600px;
     padding: 30px;
     background-color: white;
 }
 
-
 .btn {
     display: flex;
     padding: 3px;
-    margin-top: 25px;
     background: #D32788;
     border-color:#D32788;
     color: white;
