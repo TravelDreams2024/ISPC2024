@@ -1,41 +1,43 @@
-import { Component,  } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+// src/app/pages/auth/iniciar-sesion/iniciar-sesion.component.ts
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-iniciar-sesion',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './iniciar-sesion.component.html',
-  styleUrl: './iniciar-sesion.component.css'
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class IniciarSesionComponent {
+  formGroup: FormGroup;
 
-  formGroup = this.formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required]),
-      rememberMe: new FormControl(false, Validators.requiredTrue)
-
-  });
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    this.formGroup = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      rememberMe: [false]
+    });
+  }
 
   onSubmit() {
-    console.log(this.formGroup.value);
-}
-clickRegister(): void{
-  // console.log(this.formGroup.get('name')?.value as string);
-  const name = this.formGroup.controls.email.value
-  console.log(name)
-}
-onEnviar(event: Event) {
-  console.log(this.formGroup.value);
-  event.preventDefault();
-  if (this.formGroup.valid) {
-    alert("Enviar al servidor...");
-  } else {
-    this.formGroup.markAllAsTouched();
+    if (this.formGroup.valid) {
+      console.log('Form data:', this.formGroup.value); // Log para verificar datos del formulario
+      this.authService.login(this.formGroup.value).subscribe(
+        response => {
+          console.log('Login successful:', response); // Log para verificar respuesta exitosa
+          // Manejar respuesta de login
+          this.router.navigate(['/']);
+        },
+        error => {
+          console.error('Login failed:', error); // Log para verificar errores
+          // Manejar errores de login
+        }
+      );
+    } else {
+      console.log('Form is invalid');
+    }
   }
-}
-
 }

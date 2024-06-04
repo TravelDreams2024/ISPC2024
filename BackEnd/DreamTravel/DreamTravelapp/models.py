@@ -1,23 +1,36 @@
 from django.db import models
-
 from django.core.validators import MinLengthValidator, MaxLengthValidator
 from django.core.exceptions import ValidationError
 
 
+
+
 #Rol
 class Rol(models.Model):
+    ADMINISTRADOR = 'Administrador'
+    USUARIO = 'Usuario'
+    FULL_STACK = 'Full Stack'
+
+
+    ROLES_CHOICES = [
+        (ADMINISTRADOR, 'Administrador'),
+        (USUARIO, 'Usuario'),
+        (FULL_STACK, 'Full Stack'),
+    ]
     id_rol = models.AutoField(primary_key=True)
-    nombre_rol= models.CharField(default='usuario', max_length=100, blank=False)
+    nombre_rol = models.CharField(max_length=100, choices=ROLES_CHOICES, default=USUARIO)
+
+
     class Meta:
         db_table = 'rol'
         verbose_name = 'Rol'
-        verbose_name_plural = 'roles'
+        verbose_name_plural = 'Roles'
+
+
     def __str__(self):
         return self.nombre_rol
-    def __unicode__(self):
-        return self.nombre_rol
    
-#Metodo de pago del usuario 
+#Metodo de pago del usuario
 class MetodoPago(models.Model):
     id_metodoPago = models.AutoField(primary_key=True)
     nombrePago = models.CharField(max_length=100)
@@ -29,7 +42,7 @@ class MetodoPago(models.Model):
         return self.nombrePago
     def __unicode__(self):
         return self.nombrePago
-    
+   
 #Categorias de los viajes
 class Categorias(models.Model):
         id_categoria = models.AutoField(primary_key=True)
@@ -44,7 +57,8 @@ def __unicode__(self):
         return self.nombreCategoria
        
 
-#Clase de usuario   
+
+#Clase de usuario  
 class Usuarios(models.Model):
     id_usuario = models.AutoField(primary_key=True)
     nombre_usuario = models.CharField(max_length=100)
@@ -64,7 +78,7 @@ class Usuarios(models.Model):
         return f'{self.nombre_usuario} {self.apellido_usuario}'
     def __unicode__(self):
         return f'{self.nombre_usuario} {self.apellido_usuario}'
-    
+   
 #Destinos de viaje
 #Agregamos un validador de precio
 def positive_price_validator(value):
@@ -74,7 +88,7 @@ def positive_price_validator(value):
 def positive_viaje_validator(value):
     if value < 0:
         raise ValidationError('El stock del viaje debe ser igual a 0, o un valor positivo.')
-    
+   
 class Destinos(models.Model):
     id_destino = models.AutoField(primary_key=True)
     nombre_Destino = models.CharField(max_length=150)
@@ -94,13 +108,15 @@ class Destinos(models.Model):
     def __unicode__(self):
         return self.nombre_Destino
 
+
+#Clase Nosotros
 class Nosotros(models.Model):
     id_nosotros = models.AutoField(primary_key=True)
-    nombre_apellido= models.CharField(max_length=100) 
+    nombre_apellido= models.CharField(max_length=100)
     github= models.CharField(max_length=100)
     linkedin= models.CharField(max_length=100)
     imagen= models.CharField(max_length=100)
-    id_rol = models.ForeignKey(Rol, db_column='id_rol', on_delete=models.CASCADE,default='1',)
+    id_rol = models.ForeignKey(Rol, db_column='id_rol', on_delete=models.CASCADE, default=3)
     class Meta:
         db_table = 'nosotros'
         verbose_name = 'Nosotros'
@@ -110,6 +126,8 @@ class Nosotros(models.Model):
     def __unicode__(self):
         return self.nosotros
 
+
+#CARRITO
 class Carrito(models.Model):
     id_compra = models.AutoField(primary_key=True)
     cantidad = models.DecimalField(max_digits=3, decimal_places=0, validators=[positive_price_validator])
@@ -123,6 +141,3 @@ def __str__(self):
         return self.carrito
 def __unicode__(self):
         return self.carrito
-
-
-

@@ -1,44 +1,46 @@
-import { Component,  } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+// src/app/pages/auth/registro/registro.component.ts
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule, ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './registro.component.html',
-  styleUrl: './registro.component.css'
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class RegistroComponent {
+  formGroup: FormGroup;
 
-  formGroup = this.formBuilder.group({
-    name: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
-    password2: new FormControl('', Validators.required),
-  });
-
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    this.formGroup = this.fb.group({
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
+      password2: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]]
+    });
+    
+  }
 
   onSubmit() {
-    console.log(this.formGroup.value);
-}
-clickRegister(): void{
-  // console.log(this.formGroup.get('name')?.value as string);
-  const name = this.formGroup.controls.name.value
-  console.log(name)
-}
-onEnviar(event: Event) {
-  console.log(this.formGroup.value);
-  event.preventDefault();
-  if (this.formGroup.valid) {
-    alert("Enviar al servidor...");
-  } else {
-    this.formGroup.markAllAsTouched();
+    if (this.formGroup.valid) {
+      console.log('Datos del formulario:', this.formGroup.value);
+      this.authService.register(this.formGroup.value).subscribe(
+        response => {
+          // Manejar respuesta de registro
+          this.router.navigate(['/iniciar-sesion']);
+          console.log("");
+        },
+        error => {
+          console.error('Error en el registro:', error);
+          // Manejar errores de registro
+        }
+      );
+    }
   }
-}
-
+  
+  
 }
