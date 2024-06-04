@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Destinos, Rol, Nosotros,Usuarios
-from .serializer import DestinosSerializer, RolesSerializer, NosotrosSerializer, UsuariosSerializer, RegisterSerializer, LoginSerializer
+from .models import Destinos, Rol, Nosotros,Usuarios, Carrito
+from .serializer import DestinosSerializer, RolesSerializer, NosotrosSerializer, UsuariosSerializer, RegisterSerializer, LoginSerializer, CarritoSerializer
 
 from rest_framework import status, viewsets, generics
 from rest_framework.response import Response
@@ -21,6 +21,12 @@ class DestinosViewSet(viewsets.ModelViewSet):
 class RolViewSet(viewsets.ModelViewSet):
     queryset = Rol.objects.all()
     serializer_class = RolesSerializer
+    
+#Vista de Api Carrito
+class CarritoViewSet(viewsets.ModelViewSet):
+    queryset = Carrito.objects.all()
+    serializer_class = CarritoSerializer
+    
 
 
 #Vista de Api Nosotros
