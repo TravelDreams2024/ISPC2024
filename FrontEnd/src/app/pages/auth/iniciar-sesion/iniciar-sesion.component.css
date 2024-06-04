@@ -1,10 +1,7 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
+
  body{
     background-color: rgb(239, 239, 239);
+    padding:  0px 250px 0px 250px;
  }
 .row {
     display: flex;
@@ -15,20 +12,10 @@
     background-color: white;
 }
 
-.mb-4 {
-    height: 40px;
-}
 
 .btn {
     width: 100px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
+    height: 2em;
     padding: 3px;
-    margin-top: 25px;
-    background: #D32788;
-    border-color:#D32788;
-    color: white;
-
 }
 
