@@ -1,17 +1,18 @@
+<!-- src/app/pages/auth/iniciar-sesion/iniciar-sesion.component.html -->
 <body>
     <div class="container">
         <form class="row" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-            <h1>Iniciar Sesion</h1>
+            <h1><B>INICIAR SESIÓN</B></h1>
         
             <!-- Campo de email -->
             <div class="col-12">
                 <input type="email" class="form-control" formControlName="email" id="inputEmail" placeholder="email@example.com">
                 <label for="inputEmail" class="email">Email</label>
-                <div *ngIf="formGroup.controls.email.errors && formGroup.controls.email.touched">
-                    <p *ngIf="formGroup.controls.email.errors['required']" class="text-danger">
+                <div *ngIf="formGroup.controls['email'].errors && formGroup.controls['email'].touched">
+                    <p *ngIf="formGroup.controls['email'].errors['required']" class="text-danger">
                         El email es requerido.
                     </p>
-                    <p *ngIf="formGroup.controls.email.errors['email']" class="text-danger">
+                    <p  *ngIf="formGroup.controls['email'].errors['email']" class="text-danger">
                         El formato del email debe ser válido.
                     </p>
                 </div>                 
@@ -21,30 +22,30 @@
             <div class="col-12">
                 <input type="password" class="form-control" formControlName="password" id="inputPass" placeholder="Ingresa tu contraseña">
                 <label for="inputPass" class="form-label">Contraseña</label>
-                <div *ngIf="formGroup.controls.password.errors && formGroup.controls.password.touched">
-                    <p *ngIf="formGroup.controls.password.errors['required']" class="text-danger">
+                <div *ngIf="formGroup.controls['password'].errors && formGroup.controls['password'].touched">
+                    <p *ngIf="formGroup.controls['password'].errors['required']" class="text-danger">
                         La contraseña es requerida.
                     </p>
                 </div>
             </div>
 
             <!-- Checkbox -->
-            <div class="form-check d-flex justify-content-center mb-4">
-                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" formControlName="rememberMe" />
-                <label class="form-check-label" for="form2Example33">
+            <!--<div class="form-check d-flex justify-content-center mb-4">
+                <input class="form-check-input me-2" type="checkbox" value="" id="formCheck" formControlName="rememberMe" />
+                <label class="form-check-label" for="formCheck">
                     Recuerdame
                 </label>
-            </div>
+            </div>-->
 
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-success btn-block mb-4 text-center">
-                Iniciar Sesión
-            </button>
-
-            <div class="mb-4 text-black text-opacity-50">¿No estás registrado aún?</div>
-            <a class="btn btn-success btn-block mb-4" routerLink="/registro">
-                Registrarse
-            </a>
-        </form>
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-success btn-block mb-4 text-center">
+          Iniciar Sesión
+        </button>
+        <div class="mb-4 text-black text-opacity-50">¿No estás registrado aún?</div>
+        <a class="btn btn-success btn-block mb-4" routerLink="/registro">
+          Registrarse
+        </a>
+      </form>
     </div>
-</body>
+  </body>
+  

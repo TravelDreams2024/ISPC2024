@@ -1,3 +1,4 @@
+// src/app/app.routes.ts
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { IniciarSesionComponent } from './pages/auth/iniciar-sesion/iniciar-sesion.component';
@@ -8,16 +9,15 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
 import { Pagina404Component } from './pages/pagina404/pagina404.component';
 import { ProfesionalComponent } from './pages/nosotros/profesional/profesional.component';
 
-
 export const routes: Routes = [
-    {path: '', component: HomeComponent},
-    {path: "Home", component:HomeComponent},
-    {path: "Inicio", component:HomeComponent},
-    {path:"destinos", component: DestinosComponent},
-    {path:"contacto", component: ContactoComponent},
-    {path:"iniciar-sesion", component:IniciarSesionComponent},
-    {path:"registro", component:RegistroComponent},
-    {path:"nosotros", component: NosotrosComponent},
-    {path:"nosotros/:id", component:ProfesionalComponent},
-    {path: '**', component: Pagina404Component},
+  { path: '', component: HomeComponent },
+  { path: 'Home', component: HomeComponent },
+  { path: 'Inicio', component: HomeComponent },
+  { path: 'destinos', component: DestinosComponent },
+  { path: 'contacto', component: ContactoComponent },
+  { path: 'iniciar-sesion', component: IniciarSesionComponent },
+  { path: 'registro', component: RegistroComponent },
+  { path: 'nosotros', component: NosotrosComponent },
+  { path: 'nosotros/:id', component: ProfesionalComponent },
+  { path: '**', component: Pagina404Component }
 ];
