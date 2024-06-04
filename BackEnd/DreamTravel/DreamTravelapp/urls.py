@@ -2,7 +2,7 @@ from rest_framework import routers
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from DreamTravelapp import views
-from .views import DestinosViewSet, RolViewSet, NosotrosViewSet
+from .views import DestinosViewSet, RolViewSet, NosotrosViewSet, CarritoViewSet
 from .views import DestinosViewSet, user_api_view, user_detail_api_view, token_refresh,LoginView , RegisterView
 
 
@@ -12,6 +12,7 @@ router = routers.DefaultRouter()
 router.register(r'destinos',views.DestinosViewSet)
 router.register(r'roles',views.RolViewSet)
 router.register(r'nosotros',views.NosotrosViewSet)
+router.register(r'carrito', views.CarritoViewSet)
 
 
 urlpatterns = [
@@ -24,8 +25,4 @@ urlpatterns = [
 ]
 router = routers.DefaultRouter()
 router.register(r'destinos', DestinosViewSet)
-
-
-
-
 
