@@ -1,30 +1,43 @@
 from django.contrib.auth import authenticate
 from rest_framework import serializers
+from .models import Destinos, Rol, Nosotros, Usuarios
 from django.contrib.auth.models import User
+from rest_framework.validators import UniqueValidator
+from rest_framework import serializers
 from django.contrib.auth.password_validation import validate_password
 from rest_framework.validators import UniqueValidator
 
 
 
-#SERIALIZER PARA API REST
-from .models import Destinos
-from .models import Usuarios
+
+
 #Api Rest Destinos
 class DestinosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Destinos
-        fields = ('id_destino', 'nombre_Destino', 'descripcion', 'image', 'precio_Destino', 'fecha_salida', 'cantidad_Disponible', 'id_metodoPago', 'id_categoria')
+        fields = '__all__'
+
+
+#Api de Roles
+class RolesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rol
+        fields = '__all__'
+       
+#Api de Nosotros
+class NosotrosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Nosotros
+        fields = '__all__'
 
 class UsuariosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuarios
-        fields = ('id_usuario', 'nombre_usuario', 'apellido_usuario', 'passw', 'direccion', 'dni', 'telefono', 'mail', 'id_metodoPago', 'id_rol')
+        fields = '__all__'
         
-    
-from rest_framework import serializers
-from django.contrib.auth.models import User
-from django.contrib.auth.password_validation import validate_password
-from rest_framework.validators import UniqueValidator
+
+
+
 
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
@@ -40,7 +53,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'password2', 'email', 'first_name', 'last_name')
+        fields = ('first_name','last_name','email', 'password', 'password2' )
         extra_kwargs = {
             'first_name': {'required': True},
             'last_name': {'required': True}
@@ -53,7 +66,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User.objects.create(
-            username=validated_data['username'],
+            username=validated_data['email'],  # Usar email como username
             email=validated_data['email'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name']
@@ -61,6 +74,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])  # Utiliza set_password para encriptar la contraseña
         user.save()
         return user
+
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()

@@ -1,3 +1,7 @@
+from rest_framework import viewsets
+from .models import Destinos, Rol, Nosotros,Usuarios
+from .serializer import DestinosSerializer, RolesSerializer, NosotrosSerializer, UsuariosSerializer, RegisterSerializer, LoginSerializer
+
 from rest_framework import status, viewsets, generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
@@ -5,15 +9,25 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
-from .models import Destinos, Usuarios
-from .serializer import DestinosSerializer, UsuariosSerializer, RegisterSerializer, LoginSerializer
 
-# Api Destinos
+
+
+#Vista de Api Destinos
 class DestinosViewSet(viewsets.ModelViewSet):
     queryset = Destinos.objects.all()
     serializer_class = DestinosSerializer
+   
+#Vista de Api Roles  
+class RolViewSet(viewsets.ModelViewSet):
+    queryset = Rol.objects.all()
+    serializer_class = RolesSerializer
 
+
+#Vista de Api Nosotros
+class NosotrosViewSet(viewsets.ModelViewSet):
+    queryset = Nosotros.objects.all()
+    serializer_class = NosotrosSerializer
+    
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def user_api_view(request):

@@ -45,8 +45,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
-
+CORS_ALLOW_ALL_ORIGINS = True  # Permitir todas las solicitudes (para desarrollo)
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost',
+    ]
 ROOT_URLCONF = 'DreamTravel.urls'
 
 TEMPLATES = [

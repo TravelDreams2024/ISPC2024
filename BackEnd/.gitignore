@@ -19,6 +19,7 @@ db.sqlite3
 .env
 
 # Virtual environment
+env/
 venv/
 .env/
 
