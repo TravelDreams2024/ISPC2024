@@ -8,16 +8,20 @@ import { DestinosComponent } from './pages/destinos/destinos.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { Pagina404Component } from './pages/pagina404/pagina404.component';
 import { ProfesionalComponent } from './pages/nosotros/profesional/profesional.component';
+import { DestinosCartComponent } from './pages/destinos-cart/destinos-cart.component';
+import { DestinosDetailsComponent } from './pages/destinos-details/destinos-details.component';
+
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'Home', component: HomeComponent },
-  { path: 'Inicio', component: HomeComponent },
-  { path: 'destinos', component: DestinosComponent },
-  { path: 'contacto', component: ContactoComponent },
-  { path: 'iniciar-sesion', component: IniciarSesionComponent },
-  { path: 'registro', component: RegistroComponent },
-  { path: 'nosotros', component: NosotrosComponent },
-  { path: 'nosotros/:id', component: ProfesionalComponent },
-  { path: '**', component: Pagina404Component }
+    {path: '', component: HomeComponent},
+    {path: "Home", component:HomeComponent},
+    {path:"destinos", component: DestinosComponent},
+    {path:"destinos/:id", component:DestinosDetailsComponent},
+    {path:"destinos-cart", component: DestinosCartComponent},
+    {path:"contacto", component: ContactoComponent},
+    {path:"iniciar-sesion", component:IniciarSesionComponent},
+    {path:"registro", component:RegistroComponent},
+    {path:"nosotros", component: NosotrosComponent},
+    {path:"nosotros/:id", component:ProfesionalComponent},
+    {path: '**', component: Pagina404Component},
 ];
