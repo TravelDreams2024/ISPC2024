@@ -1,30 +1,36 @@
 from django.contrib.auth import authenticate
 from rest_framework import serializers
-from .models import Destinos, Rol, Nosotros, Usuarios
+from .models import Destinos, Rol, Nosotros, Usuarios,Carrito ,MetodoPago
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from rest_framework import serializers
 from django.contrib.auth.password_validation import validate_password
-from rest_framework.validators import UniqueValidator
 
 
 
+class MetodoPagoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MetodoPago
+        fields = '__all__'
 
-
-#Api Rest Destinos
 class DestinosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Destinos
         fields = '__all__'
 
+class CarritoSerializer(serializers.ModelSerializer):
+    id_destino = serializers.PrimaryKeyRelatedField(queryset=Destinos.objects.all())
+    id_metodoPago = serializers.PrimaryKeyRelatedField(queryset=MetodoPago.objects.all())
 
-#Api de Roles
+    class Meta:
+        model = Carrito
+        fields = '__all__'
+
 class RolesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rol
         fields = '__all__'
-       
-#Api de Nosotros
+
 class NosotrosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Nosotros
@@ -34,9 +40,6 @@ class UsuariosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuarios
         fields = '__all__'
-        
-
-
 
 
 class RegisterSerializer(serializers.ModelSerializer):

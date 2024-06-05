@@ -1,35 +1,62 @@
-from rest_framework import viewsets
-from .models import Destinos, Rol, Nosotros,Usuarios, Carrito
-from .serializer import DestinosSerializer, RolesSerializer, NosotrosSerializer, UsuariosSerializer, RegisterSerializer, LoginSerializer, CarritoSerializer
-
-from rest_framework import status, viewsets, generics
+from rest_framework import viewsets, generics
+from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework import status
+from .models import Destinos, Carrito, Rol, Nosotros, Usuarios
+from .serializer import DestinosSerializer, CarritoSerializer, RolesSerializer, NosotrosSerializer, UsuariosSerializer, RegisterSerializer, LoginSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 
-
-
-#Vista de Api Destinos
 class DestinosViewSet(viewsets.ModelViewSet):
     queryset = Destinos.objects.all()
     serializer_class = DestinosSerializer
-   
-#Vista de Api Roles  
-class RolViewSet(viewsets.ModelViewSet):
-    queryset = Rol.objects.all()
-    serializer_class = RolesSerializer
-    
-#Vista de Api Carrito
+
 class CarritoViewSet(viewsets.ModelViewSet):
     queryset = Carrito.objects.all()
     serializer_class = CarritoSerializer
-    
 
+    @action(detail=True, methods=['post'])
+    def agregar(self, request, pk=None):
+        destino = Destinos.objects.get(pk=pk)
+        carrito, created = Carrito.objects.get_or_create(
+            id_destino=destino,
+            defaults={'cantidad': 1, 'id_metodoPago': destino.id_metodoPago}
+        )
+        if not created:
+            carrito.cantidad += 1
+            carrito.save()
+        return Response(CarritoSerializer(carrito).data)
 
-#Vista de Api Nosotros
+    @action(detail=True, methods=['post'])
+    def eliminar(self, request, pk=None):
+        item = Carrito.objects.get(pk=pk)
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(detail=False, methods=['get'])
+    def ver(self, request):
+        carrito_items = Carrito.objects.all()
+        total = sum(item.id_destino.precio_Destino * item.cantidad for item in carrito_items)
+        return Response({
+            'carrito': CarritoSerializer(carrito_items, many=True).data,
+            'total': total
+        })
+
+    @action(detail=False, methods=['post'])
+    def checkout(self, request):
+        carrito_items = Carrito.objects.all()
+        total = sum(item.id_destino.precio_Destino * item.cantidad for item in carrito_items)
+        carrito_items.delete()
+        return Response({'message': 'Checkout successful', 'total': total})
+
+class RolViewSet(viewsets.ModelViewSet):
+    queryset = Rol.objects.all()
+    serializer_class = RolesSerializer
+
 class NosotrosViewSet(viewsets.ModelViewSet):
     queryset = Nosotros.objects.all()
     serializer_class = NosotrosSerializer
