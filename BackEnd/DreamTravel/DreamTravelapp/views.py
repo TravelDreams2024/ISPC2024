@@ -11,6 +11,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
+
+
 class DestinosViewSet(viewsets.ModelViewSet):
     queryset = Destinos.objects.all()
     serializer_class = DestinosSerializer
@@ -18,12 +20,17 @@ class DestinosViewSet(viewsets.ModelViewSet):
 class CarritoViewSet(viewsets.ModelViewSet):
     queryset = Carrito.objects.all()
     serializer_class = CarritoSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        return Carrito.objects.filter(user=self.request.user)
 
     @action(detail=True, methods=['post'])
     def agregar(self, request, pk=None):
         destino = Destinos.objects.get(pk=pk)
         carrito, created = Carrito.objects.get_or_create(
             id_destino=destino,
+            user=request.user,  # Asociar el carrito al usuario autenticado
             defaults={'cantidad': 1, 'id_metodoPago': destino.id_metodoPago}
         )
         if not created:
@@ -33,13 +40,16 @@ class CarritoViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['post'])
     def eliminar(self, request, pk=None):
-        item = Carrito.objects.get(pk=pk)
-        item.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        try:
+            item = Carrito.objects.get(pk=pk, user=request.user)  # Filtrar por usuario
+            item.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Carrito.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
     @action(detail=False, methods=['get'])
     def ver(self, request):
-        carrito_items = Carrito.objects.all()
+        carrito_items = Carrito.objects.filter(user=request.user)  # Filtrar por usuario
         total = sum(item.id_destino.precio_Destino * item.cantidad for item in carrito_items)
         return Response({
             'carrito': CarritoSerializer(carrito_items, many=True).data,
@@ -48,10 +58,12 @@ class CarritoViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def checkout(self, request):
-        carrito_items = Carrito.objects.all()
+        carrito_items = Carrito.objects.filter(user=request.user)  # Filtrar por usuario
         total = sum(item.id_destino.precio_Destino * item.cantidad for item in carrito_items)
         carrito_items.delete()
         return Response({'message': 'Checkout successful', 'total': total})
+
+##############################
 
 class RolViewSet(viewsets.ModelViewSet):
     queryset = Rol.objects.all()
@@ -60,6 +72,8 @@ class RolViewSet(viewsets.ModelViewSet):
 class NosotrosViewSet(viewsets.ModelViewSet):
     queryset = Nosotros.objects.all()
     serializer_class = NosotrosSerializer
+    
+ #Usuarios 
     
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])

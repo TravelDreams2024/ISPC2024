@@ -21,6 +21,7 @@ class DestinosSerializer(serializers.ModelSerializer):
 class CarritoSerializer(serializers.ModelSerializer):
     id_destino = serializers.PrimaryKeyRelatedField(queryset=Destinos.objects.all())
     id_metodoPago = serializers.PrimaryKeyRelatedField(queryset=MetodoPago.objects.all())
+    user = serializers.ReadOnlyField(source='user.username')  # Añadir el campo de usuario
 
     class Meta:
         model = Carrito
@@ -93,3 +94,5 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError('Credenciales inválidas')
         attrs['user'] = user
         return attrs
+    
+    
