@@ -40,8 +40,6 @@ class MetodoPago(models.Model):
         verbose_name_plural = 'Metodos de pagos'
     def __str__(self):
         return self.nombrePago
-    def __unicode__(self):
-        return self.nombrePago
    
 #Categorias de los viajes
 class Categorias(models.Model):
@@ -123,9 +121,6 @@ class Destinos(models.Model):
         verbose_name_plural = 'Destinos'
     def __str__(self):
         return self.nombre_Destino
-    def __unicode__(self):
-        return self.nombre_Destino
-
 
 
 
@@ -134,14 +129,15 @@ class Carrito(models.Model):
     cantidad = models.DecimalField(max_digits=3, decimal_places=0, validators=[positive_price_validator])
     id_metodoPago = models.ForeignKey(MetodoPago, db_column='id_metodoPago', on_delete=models.CASCADE)
     id_destino = models.ForeignKey(Destinos, db_column='id_destino', on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)  # Valor predeterminado para el usuario
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    
     class Meta:
         db_table = 'carrito'
         verbose_name = 'carrito'
         verbose_name_plural = 'carrito'
-
+    
     def __str__(self):
         return f'{self.user.username} - {self.id_destino.nombre_Destino}'
-
+    
     def __unicode__(self):
         return f'{self.user.username} - {self.id_destino.nombre_Destino}'

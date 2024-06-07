@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import DestinosViewSet, RolViewSet, NosotrosViewSet, CarritoViewSet, user_api_view, user_detail_api_view, LoginView, RegisterView, token_refresh
+from .views import DestinosViewSet, RolViewSet, NosotrosViewSet, CarritoViewSet, user_api_view, user_detail_api_view, LoginView, RegisterView, token_refresh,agregar_al_carrito, obtener_carrito, eliminar_item_carrito
 
 router = DefaultRouter()
 router.register(r'destinos', DestinosViewSet)
@@ -14,5 +14,8 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('token/refresh/', token_refresh, name='token_refresh'),
+    path('carrito/agregar', agregar_al_carrito, name='agregar_al_carrito'),
+    path('carrito/', obtener_carrito, name='obtener_carrito'),
+    path('carrito/<int:id>', eliminar_item_carrito, name='eliminar_item_carrito'),
     path('', include(router.urls)),
 ]

@@ -1,4 +1,3 @@
-// src/app/pages/auth/registro/registro.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
@@ -22,25 +21,22 @@ export class RegistroComponent {
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       password2: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]]
     });
-    
   }
 
   onSubmit() {
     if (this.formGroup.valid) {
       console.log('Datos del formulario:', this.formGroup.value);
       this.authService.register(this.formGroup.value).subscribe(
-        response => {
+        (response: any) => {
           // Manejar respuesta de registro
           this.router.navigate(['/iniciar-sesion']);
-          console.log("");
+          console.log('Registro exitoso:', response);
         },
-        error => {
+        (error: any) => {
           console.error('Error en el registro:', error);
           // Manejar errores de registro
         }
       );
     }
   }
-  
-  
 }

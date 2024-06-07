@@ -1,69 +1,74 @@
 from rest_framework import viewsets, generics
-from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Destinos, Carrito, Rol, Nosotros, Usuarios
+from .models import Destinos, Carrito, Rol, Nosotros, Usuarios ,MetodoPago
 from .serializer import DestinosSerializer, CarritoSerializer, RolesSerializer, NosotrosSerializer, UsuariosSerializer, RegisterSerializer, LoginSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
 
 
 
 class DestinosViewSet(viewsets.ModelViewSet):
     queryset = Destinos.objects.all()
     serializer_class = DestinosSerializer
-
+    
 class CarritoViewSet(viewsets.ModelViewSet):
     queryset = Carrito.objects.all()
     serializer_class = CarritoSerializer
-   # permission_classes = [IsAuthenticated]
 
-   # def get_queryset(self):
-        # Filtrar el carrito por el usuario autenticado
-      #  return Carrito.objects.filter(user=self.request.user)
-
-    @action(detail=True, methods=['post'])
-    def agregar(self, request, pk=None):
-        destino = Destinos.objects.get(pk=pk)
-        # Crear o actualizar un carrito para el usuario autenticado
-        carrito, created = Carrito.objects.get_or_create(
+@api_view(['POST'])
+def agregar_al_carrito(request):
+    try:
+        id_destino = request.data.get('id_destino')
+        id_metodoPago = request.data.get('id_metodoPago')
+        
+        if not id_destino or not id_metodoPago:
+            return Response({'error': 'id_destino and id_metodoPago are required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        destino = Destinos.objects.get(pk=id_destino)
+        metodoPago = MetodoPago.objects.get(pk=id_metodoPago)
+        
+        carrito_item, created = Carrito.objects.get_or_create(
             user=request.user,
             id_destino=destino,
-            defaults={'cantidad': 1, 'id_metodoPago': destino.id_metodoPago}
+            id_metodoPago=metodoPago,
+            defaults={'cantidad': 1}
         )
         if not created:
-            carrito.cantidad += 1
-            carrito.save()
-        return Response(CarritoSerializer(carrito).data)
+            carrito_item.cantidad += 1
+            carrito_item.save()
+        
+        serializer = CarritoSerializer(carrito_item)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    except Destinos.DoesNotExist:
+        return Response({'error': 'Destino not found'}, status=status.HTTP_404_NOT_FOUND)
+    except MetodoPago.DoesNotExist:
+        return Response({'error': 'MetodoPago not found'}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    @action(detail=True, methods=['post'])
-    def eliminar(self, request, pk=None):
-        try:
-            item = Carrito.objects.get(pk=pk, user=request.user)  # Filtrar por usuario autenticado
-            item.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        except Carrito.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+@api_view(['GET'])
+def obtener_carrito(request):
+    try:
+        carrito_items = Carrito.objects.filter(user=request.user)
+        serializer = CarritoSerializer(carrito_items, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    @action(detail=False, methods=['get'])
-    def ver(self, request):
-        carrito_items = Carrito.objects.filter(user=request.user)  # Filtrar por usuario autenticado
-        total = sum(item.id_destino.precio_Destino * item.cantidad for item in carrito_items)
-        return Response({
-            'carrito': CarritoSerializer(carrito_items, many=True).data,
-            'total': total
-        })
-
-    @action(detail=False, methods=['post'])
-    def checkout(self, request):
-        carrito_items = Carrito.objects.filter(user=request.user)  # Filtrar por usuario autenticado
-        total = sum(item.id_destino.precio_Destino * item.cantidad for item in carrito_items)
-        carrito_items.delete()
-        return Response({'message': 'Checkout successful', 'total': total})
+@api_view(['DELETE'])
+def eliminar_item_carrito(request, id):
+    try:
+        carrito_item = Carrito.objects.get(pk=id, user=request.user)
+        carrito_item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    except Carrito.DoesNotExist:
+        return Response({'error': 'Carrito item not found'}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 ##############################
 
