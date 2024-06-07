@@ -5,7 +5,7 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class NosotrosService {
-  url: string= "http://localhost:3000/profesional";
+  url: string= "http://127.0.0.1:8000/api/v1/nosotros/";
 
   constructor(private http:HttpClient) { }
 

@@ -1,4 +1,3 @@
-# DreamTravelapp/urls.py
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import DestinosViewSet, RolViewSet, NosotrosViewSet, CarritoViewSet, user_api_view, user_detail_api_view, LoginView, RegisterView, token_refresh

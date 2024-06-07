@@ -28,7 +28,8 @@ export class IniciarSesionComponent {
       this.authService.login(this.formGroup.value).subscribe(
         response => {
           console.log('Login successful:', response); // Log para verificar respuesta exitosa
-          // Manejar respuesta de login
+          localStorage.setItem('access_token', response.access);
+          localStorage.setItem('refresh_token', response.refresh);
           this.router.navigate(['/']);
         },
         error => {

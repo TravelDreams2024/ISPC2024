@@ -1,23 +1,18 @@
-<!-- <h2 class="custom-title">{{ titulo }}</h2> -->
+<h2 class="custom-title">{{ titulo }}</h2>
 <div class="container-fluid mt-4">
   <div class="row">
-    @for (destino of destinosList; track destino.id) {
-      <div class="col-md-3">
+    <div *ngFor="let destino of destinosList" class="col-md-3">
       <div class="card custom-card mb-3">
         <img [src]="destino.image" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">{{destino.name}}</h5>
-          <p class="card-text">{{destino.description}}</p>
+          <h5 class="card-title">{{ destino.nombre_Destino }}</h5>
+          <p class="card-text">{{ destino.descripcion }}</p>
           <div class="d-flex justify-content-between align-items-center">
-            <p class="card-text mb-0 precio">{{ destino.precio }} USD</p>
-            <button class="btn add-to-cart-btn bordered-btn >Ver más</button>">Ver más</button>
-            <a href="#" class="btn btn-secondary custom-btn" routerLink="/carrito">Comprar</a>
+            <p class="card-text mb-0 precio">{{ destino.precio_Destino }} USD</p>
+            <button class="btn add-to-cart-btn bordered-btn" (click)="agregarAlCarrito(destino)">Comprar</button>
           </div>
         </div>
       </div>
     </div>
-    } @empty {
-      <p>No hay destinos disponibles.</p>
-    }
   </div>
 </div>

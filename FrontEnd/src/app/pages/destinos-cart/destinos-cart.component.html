@@ -1,84 +1,17 @@
-<section class="h-100 gradient-custom">
-    <div class="container py-5">
-        <div class="row d-flex justify-content-center my-4">
-            <div class="col-md-8">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <!-- Single item -->
-                        <div class="row">
-                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                                <!-- Image -->
-                                <div class="bg-image hover-zoom ripple rounded">
-                                    <img src="https://i.imgur.com/IVmPbvQ.png"
-                                        class="w-100" alt="Blue Jeans Jacket">
-                                </div>
-                            </div>
-                            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                                <!-- Data -->
-                                <!-- <p><strong>{{destino.name}}</strong></p> -->
-                                <p><strong>San Carlos de Bariloche</strong></p>
-                                <!-- <p>{{destino.description}}</p> -->
-                                <p>Paisajes majestuosos, lagos cristalinos, montañas imponentes, chocolate artesanal, esquí de clase mundial y encanto alpino.</p>
-                                <button type="button" class="btn btn-primary btn-sm me-1 mb-2">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm mb-2">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                                <!-- Quantity -->
-                                <div class="d-flex mb-4" style="max-width: 300px">
-                                    <button class="btn btn-primary px-3 me-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control text-center w-25">
-                                    <button class="btn btn-primary px-3 ms-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                                <!-- Price -->
-                                <p class="text-start text-md-center">
-                                    <strong>450 USD</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-4 mb-lg-0">
-                    <div class="card-body">
-                        <p><strong>Aceptamos</strong></p>
-                        <img class="me-2" width="45px"
-                            src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-                            alt="Visa">
-                        <img class="me-2" width="45px"
-                            src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-                            alt="American Express">
-                        <img class="me-2" width="45px"
-                            src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-                            alt="Mastercard">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <div class="card-header py-3">
-                        <h5 class="mb-0">Resumen</h5>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                                <div>
-                                    <strong>Total</strong>
-                                </div>
-                                <span><strong>450 USD</strong></span>
-                            </li>
-                        </ul>
-                        <button type="button" class="btn btn-primary btn-lg btn-block">Proceder al checkout
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="carrito-container">
+    <h2>Tu Carrito</h2>
+    <div *ngIf="carritoItems.length === 0">
+      <p>No hay artículos en tu carrito.</p>
     </div>
-</section>
+    <div *ngIf="carritoItems.length > 0">
+      <div *ngFor="let item of carritoItems" class="carrito-item">
+        <p>{{ item.id_destino.nombre_Destino }} - {{ item.id_destino.precio_Destino }} USD</p>
+        <p>Cantidad: {{ item.cantidad }}</p>
+        <button (click)="agregarItem(item.id_destino.id_destino, item.id_metodoPago.id_metodoPago)">Agregar</button>
+        <button (click)="eliminarItem(item.id)">Eliminar</button>
+      </div>
+      <h3>Total: {{ total }} USD</h3>
+      <button (click)="checkout()">Checkout</button>
+    </div>
+  </div>
+  

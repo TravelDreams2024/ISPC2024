@@ -21,7 +21,7 @@ class DestinosSerializer(serializers.ModelSerializer):
 class CarritoSerializer(serializers.ModelSerializer):
     id_destino = serializers.PrimaryKeyRelatedField(queryset=Destinos.objects.all())
     id_metodoPago = serializers.PrimaryKeyRelatedField(queryset=MetodoPago.objects.all())
-    user = serializers.ReadOnlyField(source='user.username')  # Añadir el campo de usuario
+    user = serializers.ReadOnlyField(source='user.id')  # Usar el ID del usuario
 
     class Meta:
         model = Carrito
