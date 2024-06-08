@@ -1,27 +1,17 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Destino } from '../models/destinos';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DestinosService {
-  private url = 'http://127.0.0.1:8000/api/v1/destinos/';
+  private apiUrl = 'http://127.0.0.1:8000/api/v1'; // Asegúrate de que no haya una barra al final
 
   constructor(private http: HttpClient) { }
 
-  obtenerDestinos(): Observable<any[]> {
-    return this.http.get<any[]>(this.url).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      console.error('An error occurred:', error.error);
-    } else {
-      console.error(`Backend returned code ${error.status}, body was: `, error.error);
-    }
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+  obtenerDestinos(): Observable<Destino[]> {
+    return this.http.get<Destino[]>(`${this.apiUrl}/destinos`);
   }
 }

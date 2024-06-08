@@ -21,7 +21,7 @@ class DestinosSerializer(serializers.ModelSerializer):
 class CarritoSerializer(serializers.ModelSerializer):
     id_destino = serializers.PrimaryKeyRelatedField(queryset=Destinos.objects.all())
     id_metodoPago = serializers.PrimaryKeyRelatedField(queryset=MetodoPago.objects.all())
-    user = serializers.ReadOnlyField(source='user.id')  # Usar el ID del usuario
+    user = serializers.ReadOnlyField(source='user.id')
 
     class Meta:
         model = Carrito
@@ -44,41 +44,30 @@ class UsuariosSerializer(serializers.ModelSerializer):
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(
-        required=True,
-        validators=[UniqueValidator(queryset=User.objects.all())]
-    )
-    password = serializers.CharField(
-        write_only=True,
-        required=True,
-        validators=[validate_password]
-    )
-    password2 = serializers.CharField(write_only=True, required=True)
+    password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 
     class Meta:
         model = User
-        fields = ('first_name','last_name','email', 'password', 'password2' )
+        fields = ['first_name', 'last_name', 'email', 'password', 'password2']
         extra_kwargs = {
-            'first_name': {'required': True},
-            'last_name': {'required': True}
+            'password': {'write_only': True}
         }
 
-    def validate(self, attrs):
-        if attrs['password'] != attrs['password2']:
-            raise serializers.ValidationError({"password": "Las contraseñas no coinciden."})
-        return attrs
-
-    def create(self, validated_data):
-        user = User.objects.create(
-            username=validated_data['email'],  # Usar email como username
-            email=validated_data['email'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name']
+    def save(self):
+        user = User(
+            email=self.validated_data['email'],
+            first_name=self.validated_data['first_name'],
+            last_name=self.validated_data['last_name']
         )
-        user.set_password(validated_data['password'])  # Utiliza set_password para encriptar la contraseña
+        password = self.validated_data['password']
+        password2 = self.validated_data['password2']
+
+        if password != password2:
+            raise serializers.ValidationError({'password': 'Las contraseñas deben coincidir.'})
+        
+        user.set_password(password)
         user.save()
         return user
-
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()

@@ -1,23 +1,25 @@
 from rest_framework import viewsets, generics
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Destinos, Carrito, Rol, Nosotros, Usuarios ,MetodoPago
+from .models import Destinos, Carrito, Rol, Nosotros, Usuarios,MetodoPago,Destinos
 from .serializer import DestinosSerializer, CarritoSerializer, RolesSerializer, NosotrosSerializer, UsuariosSerializer, RegisterSerializer, LoginSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 
 
+
+class CarritoViewSet(viewsets.ModelViewSet):
+    queryset = Carrito.objects.all()
+    serializer_class = CarritoSerializer
 
 class DestinosViewSet(viewsets.ModelViewSet):
     queryset = Destinos.objects.all()
     serializer_class = DestinosSerializer
-    
-class CarritoViewSet(viewsets.ModelViewSet):
-    queryset = Carrito.objects.all()
-    serializer_class = CarritoSerializer
 
 @api_view(['POST'])
 def agregar_al_carrito(request):
@@ -69,7 +71,6 @@ def eliminar_item_carrito(request, id):
         return Response({'error': 'Carrito item not found'}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
 ##############################
 
 class RolViewSet(viewsets.ModelViewSet):

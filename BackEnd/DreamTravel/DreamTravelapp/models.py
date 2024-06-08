@@ -34,12 +34,18 @@ class Rol(models.Model):
 class MetodoPago(models.Model):
     id_metodoPago = models.AutoField(primary_key=True)
     nombrePago = models.CharField(max_length=100)
+    
     class Meta:
         db_table = 'metodo_pago'
         verbose_name = 'Metodos De Pago'
         verbose_name_plural = 'Metodos de pagos'
+    
     def __str__(self):
         return self.nombrePago
+    
+    def __unicode__(self):
+        return self.nombrePago
+
    
 #Categorias de los viajes
 class Categorias(models.Model):
@@ -115,13 +121,17 @@ class Destinos(models.Model):
     cantidad_Disponible = models.IntegerField(default=12, validators=[positive_viaje_validator])
     id_metodoPago = models.ForeignKey(MetodoPago, db_column='id_metodoPago', on_delete=models.CASCADE)
     id_categoria = models.ForeignKey(Categorias, db_column='id_categoria', on_delete=models.CASCADE)
+    
     class Meta:
         db_table = 'destinos'
         verbose_name = 'Destino'
         verbose_name_plural = 'Destinos'
+    
     def __str__(self):
         return self.nombre_Destino
-
+    
+    def __unicode__(self):
+        return self.nombre_Destino
 
 
 class Carrito(models.Model):

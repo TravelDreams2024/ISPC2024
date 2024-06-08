@@ -26,6 +26,7 @@ export class AuthService {
   register(user: any): Observable<any> {
     return this.http.post(this.registerUrl, user).pipe(
       map((response: any) => {
+        // Handle registration response if needed
         return response;
       }),
       catchError(err => {

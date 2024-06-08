@@ -1,9 +1,9 @@
 <h2 class="custom-title">{{ titulo }}</h2>
 <div class="container-fluid mt-4">
   <div class="row">
-    <div *ngFor="let destino of destinosList" class="col-md-3">
+    <div *ngFor="let destino of destinosList; trackBy: trackById" class="col-md-3">
       <div class="card custom-card mb-3">
-        <img [src]="destino.image" class="card-img-top" alt="...">
+        <img [src]="destino.imagen || 'url_de_imagen_por_defecto'" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{ destino.nombre_Destino }}</h5>
           <p class="card-text">{{ destino.descripcion }}</p>
@@ -13,6 +13,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div *ngIf="destinosList.length === 0">
+      <p>No hay destinos disponibles.</p>
     </div>
   </div>
 </div>

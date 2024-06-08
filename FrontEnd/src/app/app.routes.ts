@@ -1,4 +1,3 @@
-// src/app/app.routes.ts
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { IniciarSesionComponent } from './pages/auth/iniciar-sesion/iniciar-sesion.component';
