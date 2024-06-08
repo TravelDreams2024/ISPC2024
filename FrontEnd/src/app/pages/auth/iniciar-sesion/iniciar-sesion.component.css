@@ -19,3 +19,12 @@
     padding: 3px;
 }
 
+.btn -btn-success {
+    background-color: #240B5C!important;
+}
+
+.email-label, .form-label {
+    margin-top:50px;
+    display: block; 
+}
+
