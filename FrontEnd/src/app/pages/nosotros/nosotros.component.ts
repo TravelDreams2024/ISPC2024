@@ -1,28 +1,31 @@
 import { Component } from '@angular/core';
-import { NosotrosService } from '../../services/nosotros.service';
+import { CommonModule } from '@angular/common';
+import { NosotrosService } from '../../services/nosotros.service'; // Ajusta la ruta según tu estructura de carpetas
 
 
 @Component({
   selector: 'app-nosotros',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './nosotros.component.html',
-  styleUrl: './nosotros.component.css'
+  styleUrls: ['./nosotros.component.css']
 })
 export class NosotrosComponent {
-  profesionalList:any;
+  profesionalList: any[] = [];
+  defaultImage: string = 'ruta/a/imagen/default.png'; // Añade una ruta de imagen por defecto
 
-  constructor(private NosotrosService:NosotrosService)
-
-  {
-    this.profesionalList=NosotrosService.obtenerProfesionales().subscribe({
+  constructor(private nosotrosService: NosotrosService) {
+    this.nosotrosService.obtenerProfesionales().subscribe({
       next: (profesionalList) => {
-        this.profesionalList=profesionalList;
+        this.profesionalList = profesionalList;
       },
       error: (error) => {
-        console.error(error)
+        console.error(error);
       }
     });
   }
 
+  trackById(index: number, nosotros: any): number {
+    return nosotros.id_nosotros; // Asegúrate de que el nombre de la propiedad coincida con tu API
+  }
 }

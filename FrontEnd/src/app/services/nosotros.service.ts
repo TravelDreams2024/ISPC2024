@@ -1,17 +1,17 @@
-import { HttpClient,  HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class NosotrosService {
-  url: string= "http://127.0.0.1:8000/api/v1/nosotros/";
+  private url: string = "http://127.0.0.1:8000/api/v1/nosotros/";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  obtenerProfesionales(): Observable<any>
-  {
-    return this.http.get(this.url).pipe(
+  obtenerProfesionales(): Observable<any> {
+    return this.http.get<any[]>(this.url).pipe(
       catchError(this.handleError)
     );
   }
@@ -22,9 +22,7 @@ export class NosotrosService {
       console.error('An error occurred:', error.error);
     } else {
       // Backend rechazó la petición y devuelve una respuesta con un código de estado.
-      
-      console.error(
-        `Backend returned code ${error.status}, body was: `, error.error);
+      console.error(`Backend returned code ${error.status}, body was: `, error.error);
     }
     // Observable falla, retorna un mensaje de error genérico para el usuario.
     return throwError(() => new Error('Something bad happened; please try again later.'));

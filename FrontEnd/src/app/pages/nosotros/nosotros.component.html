@@ -1,26 +1,24 @@
 <section class="p-5 page-section bg-light" id="team">
-  <div class="container">
+    <div class="container">
       <div class="text-center">
-          <h2 class="section-heading text-uppercase">Nuestro Equipo</h2>
+        <h2 class="section-heading text-uppercase">Nuestro Equipo</h2>
       </div>
-
+  
       <div class="row">
-          @for (profesional of profesionalList; track profesional.id )
-          {
-              <div class="col-md-4">
-                  <div >
-                      <img class="rounded-circle img-fluid" [src]=profesional.photo alt="..." />
-                      <h4>{{profesional.name}}</h4>
-                      <p class="text-muted">{{profesional.perfil}}</p>
-                      <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-github"></i></a>
-                      <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-                      <a class="btn btn-dark"  routerLink="/quienes-somos/1">Ver Perfil</a>
-                  </div>
-              </div>
-              }
-          @empty {
-                  <p>There are no profesional items.</p>
-              }
+        <div *ngFor="let nosotros of profesionalList; trackBy: trackById" class="col-md-4">
+          <div>
+            <img [src]="nosotros.imagen || defaultImage" alt="{{ nosotros.nombre_apellido }}">
+            <h4>{{ nosotros.nombre_apellido }}</h4>
+            <p class="text-muted">{{ nosotros.github }}</p>
+            <a class="btn btn-dark btn-social mx-2" [href]="nosotros.github" target="_blank"><i class="fab fa-github"></i></a>
+            <a class="btn btn-dark btn-social mx-2" [href]="nosotros.linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            
           </div>
-  </div>
-</section>
+        </div>
+        <div *ngIf="profesionalList.length === 0">
+          <p>No hay profesionales en la lista.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
