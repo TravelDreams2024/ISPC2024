@@ -16,8 +16,11 @@ class UsuariosAdmin(admin.ModelAdmin):
     list_display = ( 'id_usuario','nombre_usuario', 'apellido_usuario', 'direccion', 'dni', 'telefono', 'mail', 'id_rol')
    
 class DestinosAdmin(admin.ModelAdmin):
-    list_display = ('id_destino', 'nombre_Destino', 'descripcion','precio_Destino', 'fecha_salida', 'cantidad_Disponible', 'image',)
-
+    list_display = ('id_destino', 'nombre_Destino', 'descripcion', 'image', 'precio_Destino', 'fecha_salida', 'cantidad_Disponible')
+    search_fields = ('nombre_Destino', 'descripcion')
+    list_filter = ('fecha_salida', 'cantidad_Disponible', 'id_categoria')
+    ordering = ('fecha_salida',)
+    fields = ('nombre_Destino', 'descripcion', 'image', 'precio_Destino', 'fecha_salida','cantidad_Disponible', 'id_metodoPago', 'id_categoria') 
 
 class CategoriasAdmin(admin.ModelAdmin):
     list_display = ('id_categoria','nombreCategoria',)

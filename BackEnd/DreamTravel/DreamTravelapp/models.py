@@ -115,22 +115,19 @@ class Destinos(models.Model):
     id_destino = models.AutoField(primary_key=True)
     nombre_Destino = models.CharField(max_length=150)
     descripcion = models.TextField(default='descripcion', blank=False)
-    image = models.TextField(default='imagen', blank=False)
+    image = models.URLField(max_length=200, blank=True)  # URLField para imágenes externas
     precio_Destino = models.DecimalField(max_digits=12, decimal_places=2, validators=[positive_price_validator])
     fecha_salida = models.DateTimeField(blank=False)
     cantidad_Disponible = models.IntegerField(default=12, validators=[positive_viaje_validator])
-    id_metodoPago = models.ForeignKey(MetodoPago, db_column='id_metodoPago', on_delete=models.CASCADE)
-    id_categoria = models.ForeignKey(Categorias, db_column='id_categoria', on_delete=models.CASCADE)
-    
+    id_metodoPago = models.ForeignKey('MetodoPago', on_delete=models.CASCADE)
+    id_categoria = models.ForeignKey('Categorias', on_delete=models.CASCADE)
+
     class Meta:
         db_table = 'destinos'
         verbose_name = 'Destino'
         verbose_name_plural = 'Destinos'
     
     def __str__(self):
-        return self.nombre_Destino
-    
-    def __unicode__(self):
         return self.nombre_Destino
 
 

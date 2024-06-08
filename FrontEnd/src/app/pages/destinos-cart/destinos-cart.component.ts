@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarritoService } from '../../services/carrito.service';
+import { Destino } from '../../models/destinos';
 
 @Component({
   selector: 'app-destinos-cart',
@@ -11,8 +12,9 @@ import { CarritoService } from '../../services/carrito.service';
 })
 export class DestinosCartComponent implements OnInit {
   carritoItems: any[] = [];
-  destinos: any[] = [];
+  destinos: Destino[] = [];
   total: number = 0;
+  defaultImage = 'url_de_imagen_por_defecto';
 
   constructor(private carritoService: CarritoService) {}
 
@@ -22,20 +24,26 @@ export class DestinosCartComponent implements OnInit {
   }
 
   obtenerCarrito(): void {
-    this.carritoService.obtenerCarrito().subscribe((items: any[]) => {
-      this.carritoItems = items;
-      this.combinarDatos();
-    }, (error: any) => {
-      console.error('Error al obtener el carrito', error);
+    this.carritoService.obtenerCarrito().subscribe({
+      next: (items: any[]) => {
+        this.carritoItems = items;
+        this.combinarDatos();
+      },
+      error: (error: any) => {
+        console.error('Error al obtener el carrito', error);
+      }
     });
   }
 
   obtenerDestinos(): void {
-    this.carritoService.obtenerDestinos().subscribe((destinos: any[]) => {
-      this.destinos = destinos;
-      this.combinarDatos();
-    }, (error: any) => {
-      console.error('Error al obtener los destinos', error);
+    this.carritoService.obtenerDestinos().subscribe({
+      next: (destinos: Destino[]) => {
+        this.destinos = destinos;
+        this.combinarDatos();
+      },
+      error: (error: any) => {
+        console.error('Error al obtener los destinos', error);
+      }
     });
   }
 
@@ -55,22 +63,29 @@ export class DestinosCartComponent implements OnInit {
   }
 
   eliminarItem(id: number): void {
-    this.carritoService.eliminarItem(id).subscribe(() => {
-      this.obtenerCarrito();
-    }, (error: any) => {
-      console.error('Error al eliminar el item del carrito', error);
+    this.carritoService.eliminarItem(id).subscribe({
+      next: () => {
+        this.obtenerCarrito();
+      },
+      error: (error: any) => {
+        console.error('Error al eliminar el item del carrito', error);
+      }
     });
   }
 
   actualizarCantidad(item: any, nuevaCantidad: number): void {
+    nuevaCantidad = Number(nuevaCantidad);
     if (nuevaCantidad < 1) {
       nuevaCantidad = 1;
     }
     item.cantidad = nuevaCantidad;
-    this.carritoService.actualizarItem(item.id_destino, nuevaCantidad).subscribe(() => {
-      this.calcularTotal();
-    }, (error: any) => {
-      console.error('Error al actualizar la cantidad del item', error);
+    this.carritoService.actualizarItem(item.id_destino, nuevaCantidad).subscribe({
+      next: () => {
+        this.calcularTotal();
+      },
+      error: (error: any) => {
+        console.error('Error al actualizar la cantidad del item', error);
+      }
     });
   }
 

@@ -93,7 +93,7 @@
                 <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                   <!-- Image -->
                   <div class="bg-image hover-zoom ripple rounded">
-                    <img [src]="item.image" (error)="item.image='url_de_imagen_por_defecto'" class="card-img-top" alt="...">
+                    <img [src]="item.image || defaultImage" alt="{{ item.nombre_Destino }}">
                   </div>
                 </div>
                 <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">

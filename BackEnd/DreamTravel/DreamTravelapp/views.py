@@ -12,14 +12,26 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
 
+class DestinosViewSet(viewsets.ModelViewSet):
+    queryset = Destinos.objects.all()
+    serializer_class = DestinosSerializer
+    permission_classes = [IsAuthenticated]
 
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
 class CarritoViewSet(viewsets.ModelViewSet):
     queryset = Carrito.objects.all()
     serializer_class = CarritoSerializer
 
-class DestinosViewSet(viewsets.ModelViewSet):
-    queryset = Destinos.objects.all()
-    serializer_class = DestinosSerializer
 
 @api_view(['POST'])
 def agregar_al_carrito(request):

@@ -7,11 +7,15 @@ import { Destino } from '../models/destinos';
   providedIn: 'root'
 })
 export class DestinosService {
-  private apiUrl = 'http://127.0.0.1:8000/api/v1'; // Asegúrate de que no haya una barra al final
+  private baseUrl = 'http://127.0.0.1:8000/api/v1/destinos';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   obtenerDestinos(): Observable<Destino[]> {
-    return this.http.get<Destino[]>(`${this.apiUrl}/destinos`);
+    return this.http.get<Destino[]>(this.baseUrl);
+  }
+
+  obtenerDestinoPorId(id: number): Observable<Destino> {
+    return this.http.get<Destino>(`${this.baseUrl}/${id}`);
   }
 }
