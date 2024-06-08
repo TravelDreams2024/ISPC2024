@@ -1,67 +1,60 @@
-<main class="flex-shrink-0">
-	<!-- Page content-->
-	<section class="py-5">
-		<div class="container px-5">
-			<!-- Contact form-->
-			<div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
-				<div class="text-center mb-5">
-					<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
-					<h1 class="fw-bolder">CONTACTÁNOS</h1>
-				</div>
-				<div class="row gx-5 justify-content-center">
-					<div class="col-lg-8 col-xl-6">
+<div class="bg-light rounded-3 py-2 px-2 px-md-5 mb-1">
+<div class="text-center mb-5">
+	<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
+	<h1><B>CONTACTÁNOS</B></h1>
+</div>
+<div class="row gx-5 justify-content-center">
+	<div class="col-lg-8 col-xl-6">
 
-						<form [formGroup]="formgroup" id="contactForm" data-sb-form-api-token="API_TOKEN">
-							<!-- Name input-->
-							<div class="form-floating mb-3">
-								<input class="form-control" id="name" type="text" placeholder="Enter your name..."
-									data-sb-validations="required" formControlName="name" />
-								<label for="name">Nombre</label>
-								<div class="invalid-feedback" data-sb-feedback="name:required">Ingrese Nombre</div>
-							</div>
-							<!-- Email address input-->
-							<div class="form-floating mb-3">
-								<input class="form-control" id="email" type="email" placeholder="name@example.com"
-									data-sb-validations="required,email" formControlName="email"/>
-								<label for="email">Email</label>
-								<div class="invalid-feedback" data-sb-feedback="email:required">Ingrese un email por favor.</div>
-								<div class="invalid-feedback" data-sb-feedback="email:email">El email ingresado no es válido.
-								</div>
-							</div>
-							<!-- Phone number input-->
-							<div class="form-floating mb-3">
-								<input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890"
-									data-sb-validations="required" formControlName="phone" />
-								<label for="phone">WhatsApp</label>
-								<div class="invalid-feedback" data-sb-feedback="phone:required">Número de Celular</div>
-							</div>
-							<!-- Message input-->
-							<div class="form-floating mb-3">
-								<textarea class="form-control" id="message" type="text" placeholder="Enter your message here..."
-									style="height: 10rem" data-sb-validations="required" formControlName="message"></textarea>
-								<label for="message">Mensaje</label>
-								<div class="invalid-feedback" data-sb-feedback="message:required">Es necesario un mensaje.</div>
-							</div>
-							<div class="d-none" id="submitSuccessMessage">
-								<div class="text-center mb-3">
-									<div class="fw-bolder">Mensaje enviado correctamente!</div>
-									Para activar este form registrarse en...
-									<br />
-									<a
-										href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-								</div>
-							</div>
-							<div class="d-none" id="submitErrorMessage">
-								<div class="text-center text-danger mb-3">Error al mandar mensaje!</div>
-							</div>
-							<!-- Submit Button-->
-							<div class="d-grid"><button (click)="clickContacto()" class="btn btn-success btn-lg btn-custom" id="submitButton"
-									type="button"><b>Enviar</b></button>
-							</div>
-						</form>
-					</div>
+		<form [formGroup]="formgroup" id="contactForm" data-sb-form-api-token="API_TOKEN">
+			<!-- Name input-->
+			<div class="form-floating mb-3">
+				<input class="form-control" id="name" type="text" placeholder="Enter your name..."
+					data-sb-validations="required" formControlName="name" />
+				<label for="name">Nombre</label>
+				<div class="invalid-feedback" data-sb-feedback="name:required">Ingrese Nombre</div>
+			</div>
+			<!-- Email address input-->
+			<div class="form-floating mb-3">
+				<input class="form-control" id="email" type="email" placeholder="name@example.com"
+					data-sb-validations="required,email" formControlName="email"/>
+				<label for="email">Email</label>
+				<div class="invalid-feedback" data-sb-feedback="email:required">Ingrese un email por favor.</div>
+				<div class="invalid-feedback" data-sb-feedback="email:email">El email ingresado no es válido.
 				</div>
 			</div>
-		</div>
-	</section>
-</main>
+			<!-- Phone number input-->
+			<div class="form-floating mb-3">
+				<input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890"
+					data-sb-validations="required" formControlName="phone" />
+				<label for="phone">WhatsApp</label>
+				<div class="invalid-feedback" data-sb-feedback="phone:required">Número de Celular</div>
+			</div>
+			<!-- Message input-->
+			<div class="form-floating mb-3">
+				<textarea class="form-control" id="message" type="text" placeholder="Enter your message here..."
+					style="height: 10rem" data-sb-validations="required" formControlName="message"></textarea>
+				<label for="message">Mensaje</label>
+				<div class="invalid-feedback" data-sb-feedback="message:required">Es necesario un mensaje.</div>
+			</div>
+			<div class="d-none" id="submitSuccessMessage">
+				<div class="text-center mb-3">
+					<div class="fw-bolder">Mensaje enviado correctamente!</div>
+					Para activar este form registrarse en...
+					<br />
+					<a
+						href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+				</div>
+			</div>
+			<div class="d-none" id="submitErrorMessage">
+				<div class="text-center text-danger mb-3">Error al mandar mensaje!</div>
+			</div>
+			<!-- Submit Button-->
+			<div class="d-grid"><button (click)="clickContacto()" class="btn btn-success btn-lg btn-custom" id="submitButton"
+					type="button"><b>Enviar</b></button>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+

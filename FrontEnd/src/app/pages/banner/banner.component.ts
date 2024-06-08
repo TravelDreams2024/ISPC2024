@@ -11,7 +11,7 @@ import { RouterOutlet } from '@angular/router';
 })
 export class BannerComponent {
   titulo1: string = "Hacemos Realidad tus Sueños";
-  subtitulo1: string = "¡Vive con nosotros la mejor Experiencia en Giras de Estudio que siempre quisiste!";
+  subtitulo1: string = "¡Viví la mejor experiencia con nosotros!";
   titulo2: string = "¡Viajes que inspiran, destinos que cautivan!";
   subtitulo2: string = "Descubre nuevos horizontes con nosotros";
   titulo3: string = "Explora el mundo con confianza";
