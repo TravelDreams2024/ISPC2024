@@ -14,8 +14,10 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('token/refresh/', token_refresh, name='token_refresh'),
-    path('carrito/agregar', agregar_al_carrito, name='agregar_al_carrito'),
+    path('agregar-al-carrito/', agregar_al_carrito, name='agregar-al-carrito'),
+    path('eliminar-item-carrito/<int:id>/', eliminar_item_carrito, name='eliminar-item-carrito'),
     path('carrito/', obtener_carrito, name='obtener_carrito'),
+    path('obtener-carrito/', obtener_carrito, name='obtener-carrito'),
     path('carrito/<int:id>', eliminar_item_carrito, name='eliminar_item_carrito'),
     path('', include(router.urls)),
 ]

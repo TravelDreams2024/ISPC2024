@@ -6,3 +6,4 @@ mysqlclient==2.2.4
 python-dotenv==1.0.1
 sqlparse==0.5.0
 tzdata==2024.1
+djangorestframework-simplejwt

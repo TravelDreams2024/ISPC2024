@@ -27,12 +27,11 @@ export class RegistroComponent {
     if (this.formGroup.valid) {
       console.log('Datos del formulario:', this.formGroup.value);
       this.authService.register(this.formGroup.value).subscribe(
-        (response: any) => {
+        response => {
           // Manejar respuesta de registro
-          this.router.navigate(['/iniciar-sesion']);
-          console.log('Registro exitoso:', response);
+          this.router.navigate(['/']);
         },
-        (error: any) => {
+        error => {
           console.error('Error en el registro:', error);
           // Manejar errores de registro
         }
