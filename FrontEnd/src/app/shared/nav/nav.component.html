@@ -16,9 +16,10 @@
           <li class="nav-item"><a class="nav-link text-white" routerLink="/contacto">Contacto</a>
           </li>
           <form class="d-flex gap-2 px-2" role="search">
-            <button class="btn btn-outline-light me-2" type="button" routerLink="/iniciar-sesion">Iniciar Sesión</button>
-            <button class="btn btn-success registro" type="button" routerLink="/registro">Registrarse</button>
-          </form>
+            <button *ngIf="!authService.isLoggedIn()" class="btn btn-outline-light me-2" type="button" routerLink="/iniciar-sesion">Iniciar Sesión</button>
+            <button *ngIf="!authService.isLoggedIn()" class="btn btn-success registro" type="button" routerLink="/registro">Registrarse</button>
+            <button *ngIf="authService.isLoggedIn()" (click)="onLogout()" class="btn btn-outline-light me-2" type="button">Cerrar Sesión</button>
+        </form>
           <li class="nav-item"><a class="nav-link text-white text-opacity-75" routerLink="/destinos-cart"><svg
             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
