@@ -19,6 +19,9 @@ export class AuthService {
         localStorage.setItem('access_token', response.access);
         localStorage.setItem('refresh_token', response.refresh);
         return response;
+      }),
+      catchError(err => {
+        return throwError(err);
       })
     );
   }
@@ -26,7 +29,6 @@ export class AuthService {
   register(user: any): Observable<any> {
     return this.http.post(this.registerUrl, user).pipe(
       map((response: any) => {
-        // Handle registration response if needed
         return response;
       }),
       catchError(err => {
@@ -54,17 +56,11 @@ export class AuthService {
     localStorage.removeItem('refresh_token');
   }
 
-  getHttpOptions() {
-    const token = localStorage.getItem('access_token');
-    return {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      })
-    };
+  getToken(): string | null {
+    return localStorage.getItem('access_token');
   }
 
   isLoggedIn(): boolean {
-    return localStorage.getItem('access_token') !== null;
+    return !!localStorage.getItem('access_token'); // Devuelve true si el token existe
   }
 }
