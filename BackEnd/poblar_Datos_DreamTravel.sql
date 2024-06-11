@@ -200,14 +200,14 @@ CREATE TABLE `destinos` (
 --
 
 INSERT INTO `destinos` (`id_destino`, `nombre_Destino`, `descripcion`, `image`, `precio_Destino`, `fecha_salida`, `cantidad_Disponible`, `id_categoria`, `id_metodoPago`) VALUES
-(6, 'San Carlos de Bariloche', 'Paisajes majestuosos, lagos cristalinos, montañas imponentes, chocolate artesanal, esquí de clase mundial y encanto alpino.', 'https://imgur.com/lkLUUVP', 450.00, '2024-08-05 06:00:00.000000', 20, 1, 1),
-(7, 'Villa Carlos Paz', 'Lago, teatro, naturaleza, diversión, espectáculos, sierras, tranquilidad, gastronomía, balnearios, entretenimiento y relax.', 'https://imgur.com/eueFEH0', 360.00, '2024-07-19 18:00:00.000000', 20, 1, 1),
-(8, 'Necochea', 'Playas extensas, paseos costeros, faro histórico, pesca deportiva, tranquilidad, dunas imponentes, atardeceres espectaculares.', 'https://imgur.com/fmOTpCr', 360.00, '2024-09-25 06:00:00.000000', 20, 1, 1),
-(9, 'Monte Hermoso', 'Playas de arenas doradas, bosques de pinos, reserva natural, actividades acuáticas, descanso, sol, familia, paz, naturaleza.', 'https://imgur.com/sHquW2b', 320.00, '2024-06-20 12:30:00.000000', 5, 1, 1),
-(10, 'Pehuenco', 'Extensas dunas doradas, pinos y acacias. Experiencia única para los amantes de la naturaleza y la serenidad.', 'https://imgur.com/ziN8JzS', 300.00, '2024-10-02 06:00:00.000000', 10, 1, 1),
-(11, 'Glaciar Perito Moreno', 'Majestuosa masa de hielo, imponente belleza natural, aventura glaciar, turquesa resplandeciente, paisaje patagónico Ãºnico.', 'https://imgur.com/TcZyLCP', 450.00, '2024-07-21 06:00:00.000000', 15, 1, 1),
-(12, 'Buzios', 'Playas paradisíacas, aguas cristalinas, encanto bohemio, gastronomía exquisita, actividades acuáticas, arte y cultura.', 'https://imgur.com/kcJGrj2', 850.00, '2024-08-02 18:00:00.000000', 15, 2, 1),
-(13, 'Camboriú', 'Playas extensas, moderna infraestructura turística, vida nocturna animada, gastronomía diversa, relax.', 'https://imgur.com/JQhfiRZ', 950.00, '2024-08-02 18:00:00.000000', 15, 2, 1);
+(6, 'San Carlos de Bariloche', 'Paisajes majestuosos, lagos cristalinos, montañas imponentes, chocolate artesanal, esquí de clase mundial y encanto alpino.', 'https://i.imgur.com/lkLUUVP.png', 450.00, '2024-08-05 06:00:00.000000', 20, 1, 1),
+(7, 'Villa Carlos Paz', 'Lago, teatro, naturaleza, diversión, espectáculos, sierras, tranquilidad, gastronomía, balnearios, entretenimiento y relax.', 'https://i.imgur.com/eueFEH0.png', 360.00, '2024-07-19 18:00:00.000000', 20, 1, 1),
+(8, 'Necochea', 'Playas extensas, paseos costeros, faro histórico, pesca deportiva, tranquilidad, dunas imponentes, atardeceres espectaculares.', 'https://i.imgur.com/fmOTpCr.png', 360.00, '2024-09-25 06:00:00.000000', 20, 1, 1),
+(9, 'Monte Hermoso', 'Playas de arenas doradas, bosques de pinos, reserva natural, actividades acuáticas, descanso, sol, familia, paz, naturaleza.', 'https://i.imgur.com/sHquW2b.png', 320.00, '2024-06-20 12:30:00.000000', 5, 1, 1),
+(10, 'Pehuenco', 'Extensas dunas doradas, pinos y acacias. Experiencia única para los amantes de la naturaleza y la serenidad.', 'https://i.imgur.com/ziN8JzS.png', 300.00, '2024-10-02 06:00:00.000000', 10, 1, 1),
+(11, 'Glaciar Perito Moreno', 'Majestuosa masa de hielo, imponente belleza natural, aventura glaciar, turquesa resplandeciente, paisaje patagónico Ãºnico.', 'https://i.imgur.com/TcZyLCP.png', 450.00, '2024-07-21 06:00:00.000000', 15, 1, 1),
+(12, 'Buzios', 'Playas paradisíacas, aguas cristalinas, encanto bohemio, gastronomía exquisita, actividades acuáticas, arte y cultura.', 'https://i.imgur.com/kcJGrj2.png', 850.00, '2024-08-02 18:00:00.000000', 15, 2, 1),
+(13, 'Camboriú', 'Playas extensas, moderna infraestructura turística, vida nocturna animada, gastronomía diversa, relax.', 'https://i.imgur.com/JQhfiRZ.png', 950.00, '2024-08-02 18:00:00.000000', 15, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -394,14 +394,14 @@ CREATE TABLE `nosotros` (
 --
 
 INSERT INTO `nosotros` (`id_nosotros`, `nombre_apellido`, `github`, `linkedin`, `imagen`, `nombre_rol`, `id_rol`) VALUES
-(1, 'Cantarino, Emmanuel', 'https://github.com/MaxiCantarino', 'https://www.linkedin.com/', 'https://imgur.com/hP7sdsS', 3, 0),
-(2, 'Cascallares, Facundo', 'https://github.com/FacundoCascallares', 'https://www.linkedin.com/', 'https://imgur.com/hP7sdsS', 3, 3),
-(3, 'Fernandez, Claudio Ranses', 'https://github.com/ccrrff2014', 'https://www.linkedin.com/', 'https://imgur.com/hP7sdsS', 3, 3),
-(4, 'González, Natalia', 'https://github.com/Natalia24v', 'https://www.linkedin.com/', 'https://imgur.com/Qxcj00Z', 3, 3),
-(5, 'Navarrete, Romina Gabriela', 'https://github.com/rominarg', 'https://www.linkedin.com/', 'https://imgur.com/Qxcj00Z', 3, 3),
-(6, 'Oro, Elias', 'https://github.com/EliasOro2030', 'https://www.linkedin.com/', 'https://imgur.com/hP7sdsS', 3, 3),
-(7, 'Ortiz, Fernando Ariel', 'https://github.com/ariel957', 'https://www.linkedin.com/', 'https://imgur.com/hP7sdsS', 3, 3),
-(8, 'Soto Valenzuela, Juan Gabriel', 'https://github.com/vstecnic', 'https://www.linkedin.com/', 'https://imgur.com/hP7sdsS', 3, 3);
+(1, 'Cantarino, Emmanuel', 'https://github.com/MaxiCantarino', 'https://www.linkedin.com/', 'https://i.imgur.com/hP7sdsS.jpg', 3, 0),
+(2, 'Cascallares, Facundo', 'https://github.com/FacundoCascallares', 'https://www.linkedin.com/', 'https://i.imgur.com/hP7sdsS.jpg', 3, 3),
+(3, 'Fernandez, Claudio Ranses', 'https://github.com/ccrrff2014', 'https://www.linkedin.com/', 'https://i.imgur.com/hP7sdsS.jpg', 3, 3),
+(4, 'González, Natalia', 'https://github.com/Natalia24v', 'https://www.linkedin.com/', 'https://i.imgur.com/Qxcj00Z.jpeg', 3, 3),
+(5, 'Navarrete, Romina Gabriela', 'https://github.com/rominarg', 'https://www.linkedin.com/', 'https://i.imgur.com/Qxcj00Z.jpeg', 3, 3),
+(6, 'Oro, Elias', 'https://github.com/EliasOro2030', 'https://www.linkedin.com/', 'https://i.imgur.com/hP7sdsS.jpg', 3, 3),
+(7, 'Ortiz, Fernando Ariel', 'https://github.com/ariel957', 'https://www.linkedin.com/', 'https://i.imgur.com/hP7sdsS.jpg', 3, 3),
+(8, 'Soto Valenzuela, Juan Gabriel', 'https://github.com/vstecnic', 'https://www.linkedin.com/', 'https://i.imgur.com/hP7sdsS.jpg', 3, 3);
 
 -- --------------------------------------------------------
 
