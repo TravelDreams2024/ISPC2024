@@ -17,7 +17,5 @@ urlpatterns = [
     path('agregar-al-carrito/', agregar_al_carrito, name='agregar-al-carrito'),
     path('eliminar-item-carrito/<int:id>/', eliminar_item_carrito, name='eliminar-item-carrito'),
     path('carrito/', obtener_carrito, name='obtener_carrito'),
-    path('obtener-carrito/', obtener_carrito, name='obtener-carrito'),
-    path('carrito/<int:id>', eliminar_item_carrito, name='eliminar_item_carrito'),
     path('', include(router.urls)),
 ]

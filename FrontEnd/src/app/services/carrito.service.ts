@@ -6,28 +6,27 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CarritoService {
-  private carritoUrl = 'http://127.0.0.1:8000/api/v1/carrito/';
-  private destinosUrl = 'http://127.0.0.1:8000/api/v1/destinos/';
+  private baseUrl = 'http://127.0.0.1:8000/api/v1';  // Django server URL base
 
   constructor(private http: HttpClient) {}
 
-  agregarCarrito(id_destino: number, id_metodoPago: number): Observable<any> {
-    return this.http.post(this.carritoUrl + 'agregar', { id_destino, id_metodoPago });
+  agregarCarrito(id_destino: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/agregar-al-carrito/`, { id_destino });
   }
 
   obtenerCarrito(): Observable<any> {
-    return this.http.get(this.carritoUrl);
+    return this.http.get(`${this.baseUrl}/carrito/`);
   }
 
   eliminarItem(id: number): Observable<any> {
-    return this.http.delete(this.carritoUrl + id);
+    return this.http.delete(`${this.baseUrl}/eliminar-item-carrito/${id}/`);
   }
 
   actualizarItem(id_destino: number, cantidad: number): Observable<any> {
-    return this.http.put(this.carritoUrl + id_destino, { cantidad });
+    return this.http.put(`${this.baseUrl}/carrito/${id_destino}/`, { cantidad });
   }
 
   obtenerDestinos(): Observable<any> {
-    return this.http.get(this.destinosUrl);
+    return this.http.get(`${this.baseUrl}/destinos/`);
   }
 }

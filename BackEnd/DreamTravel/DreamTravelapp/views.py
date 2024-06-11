@@ -26,7 +26,7 @@ class DestinosViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.action == 'list':
-            self.permission_classes = [AllowAny]
+            self.permission_classes = [AllowAny]  # Permitir a cualquiera listar destinos
         else:
             self.permission_classes = [IsAuthenticated]
         return super().get_permissions()
@@ -52,19 +52,19 @@ class CarritoViewSet(viewsets.ModelViewSet):
 def agregar_al_carrito(request):
     try:
         id_destino = request.data.get('id_destino')
-        id_metodoPago = request.data.get('id_metodoPago')
         
-        if not id_destino or not id_metodoPago:
-            return Response({'error': 'id_destino and id_metodoPago are required'}, status=status.HTTP_400_BAD_REQUEST)
+        if not id_destino:
+            return Response({'error': 'id_destino is required'}, status=status.HTTP_400_BAD_REQUEST)
         
         destino = Destinos.objects.get(pk=id_destino)
-        metodoPago = MetodoPago.objects.get(pk=id_metodoPago)
+        
+        # Usa un método de pago predeterminado si es necesario
+        metodo_pago_predeterminado = MetodoPago.objects.first()  # Puedes ajustar esta lógica según tus necesidades
         
         carrito_item, created = Carrito.objects.get_or_create(
             user=request.user,
             id_destino=destino,
-            id_metodoPago=metodoPago,
-            defaults={'cantidad': 1}
+            defaults={'cantidad': 1, 'id_metodoPago': metodo_pago_predeterminado}
         )
         if not created:
             carrito_item.cantidad += 1
@@ -74,10 +74,9 @@ def agregar_al_carrito(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     except Destinos.DoesNotExist:
         return Response({'error': 'Destino not found'}, status=status.HTTP_404_NOT_FOUND)
-    except MetodoPago.DoesNotExist:
-        return Response({'error': 'MetodoPago not found'}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])

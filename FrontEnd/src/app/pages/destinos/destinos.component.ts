@@ -37,7 +37,7 @@ export class DestinosComponent implements OnInit {
 
   agregarAlCarrito(destino: Destino): void {
     if (this.authService.isLoggedIn()) {
-      this.carritoService.agregarCarrito(destino.id_destino, destino.id_metodoPago).subscribe(() => {
+      this.carritoService.agregarCarrito(destino.id_destino).subscribe(() => {
         console.log('Destino agregado al carrito');
       }, (error: any) => {
         console.error('Error al agregar al carrito', error);
