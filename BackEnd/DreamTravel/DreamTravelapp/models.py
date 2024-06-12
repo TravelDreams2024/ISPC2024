@@ -73,7 +73,7 @@ class Usuarios(models.Model):
     telefono = models.CharField(max_length=50)
     mail = models.EmailField(unique=True)
     id_metodoPago = models.ForeignKey(MetodoPago, db_column='id_metodoPago', on_delete=models.CASCADE,)
-    id_rol = models.ForeignKey(Rol, db_column='id_rol', on_delete=models.CASCADE,default='1',)
+    id_rol = models.ForeignKey(Rol, db_column='id_rol', on_delete=models.CASCADE,default=1,)
     class Meta:
         db_table = 'usuario'
         verbose_name = 'Usuario'
