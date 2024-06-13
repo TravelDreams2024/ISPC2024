@@ -27,13 +27,16 @@ class CategoriasAdmin(admin.ModelAdmin):
 
 
 
+class RolAdmin(admin.ModelAdmin):
+    list_display = ('nombre_rol',) 
 
 class MetodoPagoAdmin(admin.ModelAdmin):
     list_display = ('id_metodoPago','nombrePago',)
 
 
 class NosotrosAdmin(admin.ModelAdmin):
-    list_display = ('id_nosotros','nombre_apellido', 'github', 'linkedin', 'imagen','id_rol',)
+    list_display = ('id_nosotros', 'nombre_apellido', 'github', 'linkedin', 'imagen', 'id_rol')
+    search_fields = ('nombre_apellido', 'github', 'linkedin')
 
 
 
