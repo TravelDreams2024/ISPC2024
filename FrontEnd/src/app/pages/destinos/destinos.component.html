@@ -3,7 +3,7 @@
   <div class="row">
     <div *ngFor="let destino of destinosList; trackBy: trackById" class="col-md-3">
       <div class="card custom-card mb-3">
-        <img [src]="destino.image">
+        <img [src]="destino.image" alt="{{ destino.nombre_Destino }}">
         <div class="card-body">
           <h5 class="card-title">{{ destino.nombre_Destino }}</h5>
           <p class="card-text">{{ destino.descripcion }}</p>
@@ -19,3 +19,6 @@
     </div>
   </div>
 </div>
+
+<app-bootstrap-toast [title]="mensajeAlerta" [message]="tipoAlerta" *ngIf="mensajeAlerta && tipoAlerta"></app-bootstrap-toast>
+

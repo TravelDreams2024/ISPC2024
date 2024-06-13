@@ -93,14 +93,14 @@
                 <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                   <!-- Image -->
                   <div class="bg-image hover-zoom ripple rounded">
-                    <img [src]="item.image || defaultImage" alt="{{ item.nombre_Destino }}">
+                    <img [src]="item.image || defaultImage" alt="{{ item.nombre_Destino }}"class="w-100" alt="Blue Jeans Jacket"> 
                   </div>
                 </div>
                 <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
                   <!-- Data -->
                   <p><strong>{{ item.nombre_Destino }}</strong></p>
                   <p>{{ item.descripcion }}</p>
-                  <button type="button" (click)="eliminarItem(item.id_destino)" class="btn btn-primary btn-sm me-1 mb-2">
+                  <button type="button" (click)="eliminarItem(item.id_compra)" class="btn btn-primary btn-sm me-1 mb-2">
                     <i class="fas fa-trash"></i>
                   </button>
                   <button type="button" class="btn btn-danger btn-sm mb-2">
@@ -122,7 +122,7 @@
                   <p class="text-start text-md-center">
                     <p class="card-text">Cantidad: {{ item.cantidad }}</p>
                     <p><strong>{{ item.precio_Destino | currency }}</strong></p>
-                  
+                  </div>
                 </div>
               </div>
             </div>
@@ -130,15 +130,9 @@
           <div class="card mb-4 mb-lg-0">
             <div class="card-body">
               <p><strong>Aceptamos</strong></p>
-              <img class="me-2" width="45px"
-                   src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-                   alt="Visa">
-              <img class="me-2" width="45px"
-                   src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-                   alt="American Express">
-              <img class="me-2" width="45px"
-                   src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-                   alt="Mastercard">
+              <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg" alt="Visa">
+              <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg" alt="American Express">
+              <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg" alt="Mastercard">
             </div>
           </div>
         </div>
@@ -161,6 +155,6 @@
           </div>
         </div>
       </div>
-    </div>
+    
   </section>
   

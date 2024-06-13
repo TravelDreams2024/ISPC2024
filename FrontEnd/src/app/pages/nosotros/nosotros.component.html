@@ -1,24 +1,34 @@
-<section class="p-5 page-section bg-light" id="team">
+
+  <main>
     <div class="container">
-      <div class="text-center">
-        <h2 class="section-heading text-uppercase">Nuestro Equipo</h2>
-      </div>
-  
-      <div class="row">
-        <div *ngFor="let nosotros of profesionalList; trackBy: trackById" class="col-md-4">
-          <div>
-            <img [src]="nosotros.imagen || defaultImage" alt="{{ nosotros.nombre_apellido }}">
-            <h4>{{ nosotros.nombre_apellido }}</h4>
-            <p class="text-muted">{{ nosotros.github }}</p>
-            <a class="btn btn-dark btn-social mx-2" [href]="nosotros.github" target="_blank"><i class="fab fa-github"></i></a>
-            <a class="btn btn-dark btn-social mx-2" [href]="nosotros.linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            
+      <section class="py-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xxl-6">
+            <div class="text-center my-5">
+              <h3 class="section-heading mb-5">¿Quiénes Somos?</h3>
+              <p>Mision/p>
+            </div>
           </div>
         </div>
-        <div *ngIf="profesionalList.length === 0">
-          <p>No hay profesionales en la lista.</p>
+      </section>
+  
+      <section class="p-5 page-section" id="team">
+        <div class="text-center">
+          <h3 class="section-heading mb-5">Nuestro Equipo</h3>
+        </div>
+        <div class="row">
+          <div class="col-md-4" *ngFor="let nosotros of profesionalList; trackBy: trackById" >
+            <div>
+              <img class="rounded-circle img-fluid" [src]="nosotros.imagen || defaultImage" alt="{{ nosotros.nombre_apellido }}" />
+              <h5>{{ nosotros.nombre_apellido }}</h5>
+              <p>{{ nosotros.rol }}</p>
+              <a class="btn btn-social mx-2" [href]="nosotros.github"><i class="fab fa-github"></i></a>
+              <a class="btn btn-social mx-2" [href]="nosotros.linkedin"><i class="fab fa-linkedin-in"></i></a>
+              <!-- <a class="btn" [routerLink]="miembro.perfil">Ver Perfil</a>
+            </div> -->
+          </div>
         </div>
       </div>
+      </section>
     </div>
-  </section>
-  
+  </main>
