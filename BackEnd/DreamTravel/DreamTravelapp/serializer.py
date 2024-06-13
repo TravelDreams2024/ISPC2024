@@ -16,7 +16,9 @@ class DestinosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Destinos
         fields = '__all__'
-
+    
+    def validate(self, data):
+        return data
 class CarritoSerializer(serializers.ModelSerializer):
     id_destino = serializers.PrimaryKeyRelatedField(queryset=Destinos.objects.all())
     id_metodoPago = serializers.PrimaryKeyRelatedField(queryset=MetodoPago.objects.all())

@@ -73,7 +73,7 @@ class Usuarios(models.Model):
     telefono = models.CharField(max_length=50)
     mail = models.EmailField(unique=True)
     id_metodoPago = models.ForeignKey(MetodoPago, db_column='id_metodoPago', on_delete=models.CASCADE,)
-    id_rol = models.ForeignKey(Rol, db_column='id_rol', on_delete=models.CASCADE,default='1',)
+    id_rol = models.ForeignKey(Rol, db_column='id_rol', on_delete=models.CASCADE,default=1,)
     class Meta:
         db_table = 'usuario'
         verbose_name = 'Usuario'
@@ -97,19 +97,19 @@ def positive_viaje_validator(value):
 #Clase Nosotros
 class Nosotros(models.Model):
     id_nosotros = models.AutoField(primary_key=True)
-    nombre_apellido= models.CharField(max_length=100)
-    github= models.CharField(max_length=100)
-    linkedin= models.CharField(max_length=100)
-    imagen= models.CharField(max_length=100)
-    id_rol = models.ForeignKey(Rol, db_column='id_rol', on_delete=models.CASCADE, default=3)
+    nombre_apellido = models.CharField(max_length=100)
+    github = models.CharField(max_length=100)
+    linkedin = models.CharField(max_length=100)
+    imagen = models.CharField(max_length=100)
+    id_rol = models.ForeignKey('Rol', db_column='id_rol', on_delete=models.CASCADE, default=3)
+
     class Meta:
         db_table = 'nosotros'
         verbose_name = 'Nosotros'
         verbose_name_plural = 'Nosotros'
+
     def __str__(self):
-        return self.nosotros
-    def __unicode__(self):
-        return self.nosotros
+        return self.nombre_apellido
    
 class Destinos(models.Model):
     id_destino = models.AutoField(primary_key=True)

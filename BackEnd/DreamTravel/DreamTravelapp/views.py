@@ -9,20 +9,21 @@ from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
-
+import logging
  
 
 class RolViewSet(viewsets.ModelViewSet):
     queryset = Rol.objects.all()
     serializer_class = RolesSerializer
+#########################################
+#Nosotros#####
+############
+
+logger = logging.getLogger(__name__)
 
 class NosotrosViewSet(viewsets.ModelViewSet):
     queryset = Nosotros.objects.all()
     serializer_class = NosotrosSerializer
-    
-class DestinosViewSet(viewsets.ModelViewSet):
-    queryset = Destinos.objects.all()
-    serializer_class = DestinosSerializer
 
     def get_permissions(self):
         if self.action == 'list':
@@ -31,9 +32,18 @@ class DestinosViewSet(viewsets.ModelViewSet):
             self.permission_classes = [IsAuthenticated]
         return super().get_permissions()
 
+    def create(self, request, *args, **kwargs):
+        logger.debug('Creating a new Nosotros entry')
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        logger.debug(f'Nosotros created successfully: {serializer.data}')
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
+        logger.debug(f'Updating Nosotros with id: {instance.id_nosotros}')
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
@@ -41,7 +51,49 @@ class DestinosViewSet(viewsets.ModelViewSet):
         if getattr(instance, '_prefetched_objects_cache', None):
             instance._prefetched_objects_cache = {}
 
+        logger.debug(f'Nosotros updated successfully: {serializer.data}')
         return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        logger.debug(f'Deleting Nosotros with id: {instance.id_nosotros}')
+        self.perform_destroy(instance)
+        logger.debug('Nosotros deleted successfully')
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+###########################
+##Destinos
+
+
+class DestinosViewSet(viewsets.ModelViewSet):
+    queryset = Destinos.objects.all()
+    serializer_class = DestinosSerializer
+
+    def get_permissions(self):
+        if self.action == 'list':
+            self.permission_classes = [AllowAny]  # Permitir a cualquiera listar destinos
+        else:
+            self.permission_classes = [IsAuthenticated]
+        return super().get_permissions()
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        logger.debug(f'Updating Destino with id: {instance.id_destino}')
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance._prefetched_objects_cache = {}
+
+        logger.debug(f'Destino updated successfully: {serializer.data}')
+        return Response(serializer.data)
+    
+    
+#############################################
+#######Carrito
 
 class CarritoViewSet(viewsets.ModelViewSet):
     queryset = Carrito.objects.all()
@@ -52,19 +104,19 @@ class CarritoViewSet(viewsets.ModelViewSet):
 def agregar_al_carrito(request):
     try:
         id_destino = request.data.get('id_destino')
-        id_metodoPago = request.data.get('id_metodoPago')
         
-        if not id_destino or not id_metodoPago:
-            return Response({'error': 'id_destino and id_metodoPago are required'}, status=status.HTTP_400_BAD_REQUEST)
+        if not id_destino:
+            return Response({'error': 'id_destino is required'}, status=status.HTTP_400_BAD_REQUEST)
         
         destino = Destinos.objects.get(pk=id_destino)
-        metodoPago = MetodoPago.objects.get(pk=id_metodoPago)
+        
+        # Usa un método de pago predeterminado si es necesario
+        metodo_pago_predeterminado = MetodoPago.objects.first()  # Puedes ajustar esta lógica según tus necesidades
         
         carrito_item, created = Carrito.objects.get_or_create(
             user=request.user,
             id_destino=destino,
-            id_metodoPago=metodoPago,
-            defaults={'cantidad': 1}
+            defaults={'cantidad': 1, 'id_metodoPago': metodo_pago_predeterminado}
         )
         if not created:
             carrito_item.cantidad += 1
@@ -74,10 +126,9 @@ def agregar_al_carrito(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     except Destinos.DoesNotExist:
         return Response({'error': 'Destino not found'}, status=status.HTTP_404_NOT_FOUND)
-    except MetodoPago.DoesNotExist:
-        return Response({'error': 'MetodoPago not found'}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -164,9 +215,9 @@ class RegisterView(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
+        user = serializer.save()  # Guardar el usuario creado
         refresh = RefreshToken.for_user(user)
         return Response({
             'refresh': str(refresh),
             'access': str(refresh.access_token),
-        })
+        }, status=status.HTTP_201_CREATED)  # Devolver el estado 201 para creación exitosa
