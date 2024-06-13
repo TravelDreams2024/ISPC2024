@@ -65,7 +65,7 @@
 /* ▲▲▲▲▲ FIN - Estilos de los textos las imagenes ▲▲▲▲▲  */
 
 .cont_slider {
-    max-width: 1866px;
+    max-width: 100vw;
     width: 100%;
     display: block;
     flex-grow: 0;
@@ -75,13 +75,13 @@
     order: 0;
   }
   .imgslider {
-    max-width: 1866px;
+    max-width: 100vw;
     width: 100%;
     height: 400px;
     object-fit: cover;
   }
   .linea_slider {
-    max-width: 1866px;
+    max-width: 100vw;
     width: 100%;
     height: 15px;
     display: flex;
