@@ -328,7 +328,7 @@ INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALU
 -- Estructura de tabla para la tabla `dreamtravelapp_carrito`
 --
 
-CREATE TABLE `carrito` (
+CREATE TABLE `dreamtravelapp_carrito` (
   `id_compra` int NOT NULL,
   `cantidad` decimal(3,0) NOT NULL,
   `id_destino` int NOT NULL,
@@ -341,7 +341,7 @@ CREATE TABLE `carrito` (
 -- Estructura de tabla para la tabla `dreamtravelapp_categorias`
 --
 
-CREATE TABLE `categorias` (
+CREATE TABLE `dreamtravelapp_categorias` (
   `id_categoria` int NOT NULL,
   `nombreCategoria` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -350,7 +350,7 @@ CREATE TABLE `categorias` (
 -- Volcado de datos para la tabla `dreamtravelapp_categorias`
 --
 
-INSERT INTO `categorias` (`id_categoria`, `nombreCategoria`) VALUES
+INSERT INTO `dreamtravelapp_categorias` (`id_categoria`, `nombreCategoria`) VALUES
 (1, 'Nacional'),
 (2, 'Internacional');
 
