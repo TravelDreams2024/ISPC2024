@@ -22,8 +22,8 @@ export class CarritoService {
     return this.http.delete(`${this.baseUrl}/eliminar-item-carrito/${id}/`);
   }
 
-  actualizarItem(id_destino: number, cantidad: number): Observable<any> {
-    return this.http.put(`${this.baseUrl}/carrito/${id_destino}/`, { cantidad });
+  actualizarItem(id: number, cantidad: number): Observable<any> {
+    return this.http.put(`${this.baseUrl}/carrito/${id}/actualizar_cantidad/`, { cantidad });
   }
 
   obtenerDestinos(): Observable<any> {

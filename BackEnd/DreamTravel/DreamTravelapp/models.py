@@ -73,7 +73,7 @@ class Usuarios(models.Model):
     telefono = models.CharField(max_length=50)
     mail = models.EmailField(unique=True)
     id_metodoPago = models.ForeignKey(MetodoPago, db_column='id_metodoPago', on_delete=models.CASCADE,)
-    id_rol = models.ForeignKey(Rol, db_column='id_rol', on_delete=models.CASCADE,default=1,)
+    id_rol = models.ForeignKey(Rol, db_column='nombre_rol', on_delete=models.CASCADE,default=1,)
     class Meta:
         db_table = 'usuario'
         verbose_name = 'Usuario'
@@ -119,8 +119,8 @@ class Destinos(models.Model):
     precio_Destino = models.DecimalField(max_digits=12, decimal_places=2, validators=[positive_price_validator])
     fecha_salida = models.DateTimeField(blank=False)
     cantidad_Disponible = models.IntegerField(default=12, validators=[positive_viaje_validator])
-    id_metodoPago = models.ForeignKey('MetodoPago', on_delete=models.CASCADE)
-    id_categoria = models.ForeignKey('Categorias', on_delete=models.CASCADE)
+    id_metodoPago = models.ForeignKey('MetodoPago', db_column='id_metodoPago', on_delete=models.CASCADE)
+    id_categoria = models.ForeignKey('Categorias',db_column='id_categoria', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'destinos'
@@ -140,11 +140,12 @@ class Carrito(models.Model):
     
     class Meta:
         db_table = 'carrito'
-        verbose_name = 'carrito'
-        verbose_name_plural = 'carrito'
+        verbose_name = 'Carrito'
+        verbose_name_plural = 'Carrito'
     
     def __str__(self):
-        return f'{self.user.username} - {self.id_destino.nombre_Destino}'
+        return f"{self.user} - {self.id_destino} - {self.cantidad}"
+
     
     def __unicode__(self):
         return f'{self.user.username} - {self.id_destino.nombre_Destino}'

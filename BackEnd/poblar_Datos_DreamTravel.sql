@@ -26,7 +26,8 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `auth_group`
 --
-
+create database dreamtravel;
+use dreamtravel;
 CREATE TABLE `auth_group` (
   `id` int NOT NULL,
   `name` varchar(150) NOT NULL
