@@ -355,6 +355,7 @@ INSERT INTO `dreamtravelapp_categorias` (`id_categoria`, `nombreCategoria`) VALU
 (1, 'Nacional'),
 (2, 'Internacional');
 
+
 -- --------------------------------------------------------
 
 --
