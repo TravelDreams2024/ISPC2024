@@ -94,11 +94,27 @@ class DestinosViewSet(viewsets.ModelViewSet):
     
 #############################################
 #######Carrito
-
 class CarritoViewSet(viewsets.ModelViewSet):
     queryset = Carrito.objects.all()
     serializer_class = CarritoSerializer
-
+    
+    @action(detail=True, methods=['put'])
+    def actualizar_cantidad(self, request, pk=None):
+        try:
+            carrito_item = self.get_object()
+            nueva_cantidad = request.data.get('cantidad')
+            
+            if not nueva_cantidad or int(nueva_cantidad) < 1:
+                return Response({'error': 'Cantidad inválida'}, status=status.HTTP_400_BAD_REQUEST)
+            
+            carrito_item.cantidad = int(nueva_cantidad)
+            carrito_item.save()
+            return Response(CarritoSerializer(carrito_item).data)
+        except Carrito.DoesNotExist:
+            return Response({'error': 'Carrito item not found'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            print(f"Error al actualizar la cantidad: {e}")  # Agregar información de depuración
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def agregar_al_carrito(request):
@@ -213,11 +229,24 @@ class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
 
     def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()  # Guardar el usuario creado
+        # Registro del usuario
+        register_serializer = self.get_serializer(data=request.data)
+        register_serializer.is_valid(raise_exception=True)
+        user = register_serializer.save()
+
+        # Autenticación del usuario
+        login_data = {'email': request.data['email'], 'password': request.data['password']}
+        login_serializer = LoginSerializer(data=login_data)
+        login_serializer.is_valid(raise_exception=True)
+        user = login_serializer.validated_data['user']
+
+        # Generación de tokens
         refresh = RefreshToken.for_user(user)
+        access_token = str(refresh.access_token)
+        refresh_token = str(refresh)
+
         return Response({
-            'refresh': str(refresh),
-            'access': str(refresh.access_token),
-        }, status=status.HTTP_201_CREATED)  # Devolver el estado 201 para creación exitosa
+            'user': register_serializer.data,
+            'refresh': refresh_token,
+            'access': access_token,
+        }, status=status.HTTP_201_CREATED)

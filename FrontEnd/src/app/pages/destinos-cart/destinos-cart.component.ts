@@ -26,7 +26,10 @@ export class DestinosCartComponent implements OnInit {
   obtenerCarrito(): void {
     this.carritoService.obtenerCarrito().subscribe({
       next: (items: any[]) => {
-        this.carritoItems = items;
+        this.carritoItems = items.map(item => ({
+          ...item,
+          cantidad: Number(item.cantidad) // Asegúrate de que cantidad sea un número
+        }));
         this.combinarDatos();
       },
       error: (error: any) => {
@@ -74,13 +77,18 @@ export class DestinosCartComponent implements OnInit {
   }
 
   actualizarCantidad(item: any, nuevaCantidad: number): void {
+    if (item.id_compra === undefined) {
+      console.error('El id del item está undefined:', item);
+      return;
+    }
+
     nuevaCantidad = Number(nuevaCantidad);
     if (nuevaCantidad < 1) {
       nuevaCantidad = 1;
     }
-    item.cantidad = nuevaCantidad;
-    this.carritoService.actualizarItem(item.id_destino, nuevaCantidad).subscribe({
+    this.carritoService.actualizarItem(item.id_compra, nuevaCantidad).subscribe({
       next: () => {
+        item.cantidad = nuevaCantidad; // Actualiza la cantidad localmente
         this.calcularTotal();
       },
       error: (error: any) => {

@@ -6,7 +6,7 @@ router = DefaultRouter()
 router.register(r'destinos', DestinosViewSet)
 router.register(r'roles', RolViewSet)
 router.register(r'nosotros', NosotrosViewSet)
-router.register(r'carrito', CarritoViewSet)
+router.register(r'carrito', CarritoViewSet, basename='carrito')  # Especificar basename
 
 urlpatterns = [
     path('usuarios/', user_api_view, name='usuarios_api'),
@@ -17,5 +17,6 @@ urlpatterns = [
     path('agregar-al-carrito/', agregar_al_carrito, name='agregar-al-carrito'),
     path('eliminar-item-carrito/<int:id>/', eliminar_item_carrito, name='eliminar-item-carrito'),
     path('carrito/', obtener_carrito, name='obtener_carrito'),
+    path('carrito/<int:pk>/actualizar_cantidad/', CarritoViewSet.as_view({'put': 'actualizar_cantidad'}), name='actualizar_cantidad'),
     path('', include(router.urls)),
 ]
