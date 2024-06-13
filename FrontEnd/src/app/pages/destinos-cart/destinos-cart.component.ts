@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarritoService } from '../../services/carrito.service';
 import { Destino } from '../../models/destinos';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-destinos-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './destinos-cart.component.html',
   styleUrls: ['./destinos-cart.component.css']
 })
@@ -105,4 +106,22 @@ export class DestinosCartComponent implements OnInit {
     console.log('Iniciar checkout');
     // Implementar lógica de checkout
   }
+  actualizarFecha(item: any): void {
+    if (item.id_compra === undefined) {
+      console.error('El id del item está undefined:', item);
+      return;
+    }
+
+    const nuevaFecha = item.fecha_salida;
+    this.carritoService.actualizarFecha(item.id_compra, nuevaFecha).subscribe({
+      next: () => {
+        item.fecha_salida = nuevaFecha; // Actualiza la fecha localmente
+        console.log('Fecha de salida actualizada:', nuevaFecha);
+      },
+      error: (error: any) => {
+        console.error('Error al actualizar la fecha de salida', error);
+      }
+    });
+  }
+
 }

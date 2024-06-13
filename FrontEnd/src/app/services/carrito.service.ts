@@ -29,4 +29,7 @@ export class CarritoService {
   obtenerDestinos(): Observable<any> {
     return this.http.get(`${this.baseUrl}/destinos/`);
   }
+  actualizarFecha(id: number, fecha_salida: string): Observable<any> {
+    return this.http.put(`${this.baseUrl}/carrito/${id}/actualizar_fecha/`, { fecha_salida });
+  }
 }

@@ -1,4 +1,4 @@
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics,status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
@@ -168,7 +168,21 @@ def eliminar_item_carrito(request, id):
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+@api_view(['PUT'])
+def actualizar_fecha_salida(request, id):
+    try:
+        carrito_item = Carrito.objects.get(pk=id)
+    except Carrito.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
+    data = request.data
+    fecha_salida = data.get('fecha_salida')
+    if fecha_salida:
+        carrito_item.fecha_salida = fecha_salida
+        carrito_item.save()
+        return Response(status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST, data={"error": "Fecha de salida no proporcionada"})
 class LoginView(TokenObtainPairView):
     serializer_class = LoginSerializer
 
