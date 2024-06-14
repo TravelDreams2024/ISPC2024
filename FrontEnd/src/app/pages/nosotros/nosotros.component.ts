@@ -11,6 +11,7 @@ import { NosotrosService } from '../../services/nosotros.service'; // Ajusta la 
   styleUrls: ['./nosotros.component.css']
 })
 export class NosotrosComponent {
+  mision = 'Desde hace 20 años, Travel Dreams ha sido la brújula que guía a aventureros de todas las edades en sus viajes más esperados. Nuestra misión trasciende un simple itinerario; es una promesa de aventura, descubrimiento y recuerdos que perduran toda la vida.';
   profesionalList: any[] = [];
   defaultImage: string = 'ruta/a/imagen/default.png'; // Añade una ruta de imagen por defecto
 
