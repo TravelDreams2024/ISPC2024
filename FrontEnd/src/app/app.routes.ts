@@ -18,11 +18,11 @@ export const routes: Routes = [
   { path: 'destinos', component: DestinosComponent },
   { path: 'destinos/:id', component: DestinosDetailsComponent },
   { path: 'destinos-cart', component: DestinosCartComponent, canActivate: [AuthGuard] },
+  { path: 'app-dash', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'contacto', component: ContactoComponent },
   { path: 'iniciar-sesion', component: IniciarSesionComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'nosotros', component: NosotrosComponent },
   { path: 'nosotros/:id', component: ProfesionalComponent },
-  { path: 'app-dashboard', component: DashboardComponent},
   { path: '**', component: Pagina404Component }
 ];

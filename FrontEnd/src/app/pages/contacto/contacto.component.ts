@@ -26,7 +26,7 @@ clickContacto(): void {
     const message = this.formgroup.controls.message.value;
     console.log('Name:', name, 'Email:', email, 'Phone:', phone, 'Message:', message);
     
-    // lógica para enviar el formulario a un servidor, mostrar un mensaje de exito
+    // Lógica para enviar el formulario a un servidor, mostrar un mensaje de exito
     alert('Mensaje enviado correctamente');
   } else {
     // Muestra mensajes de error o alguna indicación de que el formulario no es valido

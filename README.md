@@ -13,7 +13,7 @@ El portal ofrecerá a los usuarios la posibilidad de explorar destinos turístic
 
 ## Objetivo del Proyecto:
 
-El objetivo principal del proyecto es ofrecer a los usuarios una experiencia de compra de viajes turísticos fácil, intuitiva y segura, brindándoles la oportunidad de descubrir y explorar los encantos del país desde la comodidad de su hogar y facilitando la planificación de sus próximas vacaciones.
+El objetivo principal del proyecto es ofrecer a los usuarios una experiencia de compra de viajes turísticos fácil, intuitiva y segura. Brindamos la oportunidad de descubrir y explorar una amplia gama de destinos, tanto nacionales como internacionales, desde la comodidad de su hogar. Facilitamos la planificación de sus próximas vacaciones, permitiendo a los usuarios disfrutar de los encantos y maravillas del mundo con total tranquilidad.
 
 ## Integrantes:
 
