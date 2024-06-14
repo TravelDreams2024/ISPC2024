@@ -149,3 +149,5 @@ class Carrito(models.Model):
     
     def __unicode__(self):
         return f'{self.user.username} - {self.id_destino.nombre_Destino}'
+    
+    

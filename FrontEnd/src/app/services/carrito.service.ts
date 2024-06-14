@@ -29,4 +29,14 @@ export class CarritoService {
   obtenerDestinos(): Observable<any> {
     return this.http.get(`${this.baseUrl}/destinos/`);
   }
+  actualizarFecha(id: number, fecha_salida: string): Observable<any> {
+    return this.http.put(`${this.baseUrl}/carrito/${id}/actualizar_fecha/`, { fecha_salida });
+  }
+  obtenerMetodosPago(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/metodos-pago/`);  
+  }
+
+  checkout(metodoPago: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/checkout/`, { metodo_pago: metodoPago });
+  }
 }

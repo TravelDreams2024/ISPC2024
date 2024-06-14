@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarritoService } from '../../services/carrito.service';
 import { Destino } from '../../models/destinos';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-destinos-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './destinos-cart.component.html',
   styleUrls: ['./destinos-cart.component.css']
 })
@@ -15,12 +17,25 @@ export class DestinosCartComponent implements OnInit {
   destinos: Destino[] = [];
   total: number = 0;
   defaultImage = 'url_de_imagen_por_defecto';
+  metodosPago: any[] = [];
+  metodoPagoSeleccionado: string = '';
 
   constructor(private carritoService: CarritoService) {}
 
   ngOnInit(): void {
     this.obtenerCarrito();
     this.obtenerDestinos();
+    this.obtenerMetodosPago(); 
+  }
+  obtenerMetodosPago(): void {
+    this.carritoService.obtenerMetodosPago().subscribe({
+      next: (metodos: any[]) => {
+        this.metodosPago = metodos;
+      },
+      error: (error: any) => {
+        console.error('Error al obtener los métodos de pago', error);
+      }
+    });
   }
 
   obtenerCarrito(): void {
@@ -102,7 +117,38 @@ export class DestinosCartComponent implements OnInit {
   }
 
   checkout(): void {
-    console.log('Iniciar checkout');
-    // Implementar lógica de checkout
+    if (!this.metodoPagoSeleccionado) {
+      alert('Por favor, seleccione un método de pago.');
+      return;
+    }
+
+    this.carritoService.checkout(this.metodoPagoSeleccionado).subscribe({
+      next: (response: any) => {
+        alert('Compra realizada con éxito.');
+        this.obtenerCarrito();  // Limpiar el carrito después del checkout
+      },
+      error: (error: any) => {
+        console.error('Error en el checkout', error);
+        alert('Error al realizar la compra. Inténtelo de nuevo.');
+      }
+    });
   }
+  actualizarFecha(item: any): void {
+    if (item.id_compra === undefined) {
+      console.error('El id del item está undefined:', item);
+      return;
+    }
+
+    const nuevaFecha = item.fecha_salida;
+    this.carritoService.actualizarFecha(item.id_compra, nuevaFecha).subscribe({
+      next: () => {
+        item.fecha_salida = nuevaFecha; // Actualiza la fecha localmente
+        console.log('Fecha de salida actualizada:', nuevaFecha);
+      },
+      error: (error: any) => {
+        console.error('Error al actualizar la fecha de salida', error);
+      }
+    });
+  }
+
 }

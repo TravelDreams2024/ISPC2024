@@ -1,4 +1,4 @@
 <app-header></app-header>
-<app-nav></app-nav>
+<app-nav *ngIf="showNavFooter"></app-nav>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<app-footer *ngIf="showNavFooter"></app-footer>
