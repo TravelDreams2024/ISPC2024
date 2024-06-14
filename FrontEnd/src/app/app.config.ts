@@ -3,9 +3,10 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { routes } from './app.routes';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { AuthGuard } from './interceptors/auth.guard'; // Importa AuthGuard
+import { AuthGuard } from './interceptors/auth.guard';
 import { CarritoService } from './services/carrito.service';
-import { AlertaComponent } from '../app/alerta/alerta.component'; // Corrige la ruta de importación
+import { AlertaComponent } from './alerta/alerta.component';
+import { UserService } from './services/user.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,8 +17,9 @@ export const appConfig: ApplicationConfig = {
       useClass: AuthInterceptor,
       multi: true
     },
-    AlertaComponent ,
-    AuthGuard, // Asegúrate de que AuthGuard esté registrado
-    CarritoService  // Añadir el servicio del carrito aquí
+    AlertaComponent,
+    AuthGuard,
+    CarritoService,
+    UserService
   ]
 };

@@ -192,13 +192,32 @@ def actualizar_fecha_salida(request, id):
         return Response(status=status.HTTP_400_BAD_REQUEST, data={"error": "Fecha de salida no proporcionada"})
     
     
+    #################################
+    ###Dashboard
     
-    
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def listar_compras(request):
-    compras = Carrito.objects.order_by('id_compra')
-    return render(request, 'compras.html', {'compras': compras})
+    compras = Carrito.objects.filter(user=request.user)
+    serializer = CarritoSerializer(compras, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
+ 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def obtener_perfil_usuario(request):
+    try:
+        usuario = Usuarios.objects.get(mail=request.user.email)
+        serializer = UsuariosSerializer(usuario)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Usuarios.DoesNotExist:
+        return Response({'error': 'Usuario no encontrado.'}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+ 
+ ##############################################
+ 
  
 @api_view(['POST'])
 def checkout(request):

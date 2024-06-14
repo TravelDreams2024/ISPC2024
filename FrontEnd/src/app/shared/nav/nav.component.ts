@@ -23,11 +23,5 @@ export class NavComponent {
     { src: 'assets/img/user.svg', alt: 'Foto de Usuario', height: 40 }
   ];
 
-  sidebarItems: { icon: string, name: string }[] = [
-    { icon: './assets/img/01_User.svg', name: 'Perfil' },
-    { icon: './assets/img/02_reserva.svg', name: 'Estado de Reservas' },
-    { icon: './assets/img/03_historial.svg', name: 'Historial de Viajes' },
-    { icon: './assets/img/04_favoritos.svg', name: 'Favoritos' },
-    { icon: './assets/img/05_whatsapp.svg', name: 'Consultas' }
-  ];
+
 }

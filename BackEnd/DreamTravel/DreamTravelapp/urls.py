@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import DestinosViewSet,MetodoPagoViewSet, RolViewSet, NosotrosViewSet, CarritoViewSet, checkout, obtener_usuario_autenticado,user_api_view, user_detail_api_view, LoginView, RegisterView, token_refresh,agregar_al_carrito, obtener_carrito, eliminar_item_carrito,actualizar_fecha_salida
+from .views import DestinosViewSet,MetodoPagoViewSet, RolViewSet, NosotrosViewSet, CarritoViewSet,obtener_usuario_autenticado,listar_compras, obtener_perfil_usuario,checkout,obtener_usuario_autenticado,user_api_view, user_detail_api_view, LoginView, RegisterView, token_refresh,agregar_al_carrito, obtener_carrito, eliminar_item_carrito,actualizar_fecha_salida
 
 router = DefaultRouter()
 router.register(r'destinos', DestinosViewSet)
@@ -22,5 +22,7 @@ urlpatterns = [
     path('carrito/<int:pk>/actualizar_cantidad/', CarritoViewSet.as_view({'put': 'actualizar_cantidad'}), name='actualizar_cantidad'),
     path('carrito/<int:id>/actualizar_fecha/', actualizar_fecha_salida, name='actualizar_fecha_salida'),
     path('checkout/', checkout, name='checkout'),
+    path('listar-compras/', listar_compras, name='listar_compras'),
+    path('perfil/', obtener_perfil_usuario, name='obtener_perfil'),
     path('', include(router.urls)),
 ]

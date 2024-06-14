@@ -39,4 +39,7 @@ export class CarritoService {
   checkout(metodoPago: string): Observable<any> {
     return this.http.post(`${this.baseUrl}/checkout/`, { metodo_pago: metodoPago });
   }
+  listarCompras(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/listar-compras/`);
+  }
 }
