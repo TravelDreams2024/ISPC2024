@@ -24,3 +24,9 @@
     color: #240B5C!important;
     font-weight: bold;
   }
+  .custom-title {
+    color:#240B5C;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 20px;
+  }
