@@ -22,7 +22,7 @@ class DestinosSerializer(serializers.ModelSerializer):
 class CarritoSerializer(serializers.ModelSerializer):
     id_destino = serializers.PrimaryKeyRelatedField(queryset=Destinos.objects.all())
     user = serializers.ReadOnlyField(source='user.id')
-
+    id_metodoPago = MetodoPagoSerializer() 
     class Meta:
         model = Carrito
         fields = '__all__'
@@ -40,7 +40,10 @@ class UsuariosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuarios
         fields = '__all__'
-
+class UsuarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuarios
+        fields = '__all__'
 
 class RegisterSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
