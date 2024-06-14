@@ -10,7 +10,7 @@ import { FooterComponent } from './shared/footer/footer.component';
   standalone: true,
   imports: [RouterOutlet, CommonModule, HeaderComponent, NavComponent, FooterComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']  // Cambiar styleUrl a styleUrls
+  styleUrls: ['./app.component.css']  
 })
 export class AppComponent {
   title = 'front-end';
