@@ -4,6 +4,7 @@ import { CarritoService } from '../../services/carrito.service';
 import { Destino } from '../../models/destinos';
 import { FormsModule } from '@angular/forms';
 
+
 @Component({
   selector: 'app-destinos-cart',
   standalone: true,
@@ -16,12 +17,25 @@ export class DestinosCartComponent implements OnInit {
   destinos: Destino[] = [];
   total: number = 0;
   defaultImage = 'url_de_imagen_por_defecto';
+  metodosPago: any[] = [];
+  metodoPagoSeleccionado: string = '';
 
   constructor(private carritoService: CarritoService) {}
 
   ngOnInit(): void {
     this.obtenerCarrito();
     this.obtenerDestinos();
+    this.obtenerMetodosPago(); 
+  }
+  obtenerMetodosPago(): void {
+    this.carritoService.obtenerMetodosPago().subscribe({
+      next: (metodos: any[]) => {
+        this.metodosPago = metodos;
+      },
+      error: (error: any) => {
+        console.error('Error al obtener los métodos de pago', error);
+      }
+    });
   }
 
   obtenerCarrito(): void {
@@ -103,8 +117,21 @@ export class DestinosCartComponent implements OnInit {
   }
 
   checkout(): void {
-    console.log('Iniciar checkout');
-    // Implementar lógica de checkout
+    if (!this.metodoPagoSeleccionado) {
+      alert('Por favor, seleccione un método de pago.');
+      return;
+    }
+
+    this.carritoService.checkout(this.metodoPagoSeleccionado).subscribe({
+      next: (response: any) => {
+        alert('Compra realizada con éxito.');
+        this.obtenerCarrito();  // Limpiar el carrito después del checkout
+      },
+      error: (error: any) => {
+        console.error('Error en el checkout', error);
+        alert('Error al realizar la compra. Inténtelo de nuevo.');
+      }
+    });
   }
   actualizarFecha(item: any): void {
     if (item.id_compra === undefined) {

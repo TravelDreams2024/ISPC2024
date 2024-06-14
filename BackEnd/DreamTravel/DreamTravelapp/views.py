@@ -3,14 +3,21 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Destinos, Carrito, Rol, Nosotros, Usuarios,MetodoPago
-from .serializer import DestinosSerializer, CarritoSerializer, RolesSerializer, NosotrosSerializer, UsuariosSerializer, RegisterSerializer, LoginSerializer
+from .serializer import DestinosSerializer, MetodoPagoSerializer , CarritoSerializer, RolesSerializer, NosotrosSerializer, UsuariosSerializer, RegisterSerializer, LoginSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated,AllowAny  
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
 import logging
- 
+from django.shortcuts import render
+
+
+
+class MetodoPagoViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = MetodoPago.objects.all()
+    serializer_class = MetodoPagoSerializer
+
 
 class RolViewSet(viewsets.ModelViewSet):
     queryset = Rol.objects.all()
@@ -183,6 +190,37 @@ def actualizar_fecha_salida(request, id):
         return Response(status=status.HTTP_200_OK)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST, data={"error": "Fecha de salida no proporcionada"})
+    
+    
+    
+    
+def listar_compras(request):
+    compras = Carrito.objects.order_by('id_compra')
+    return render(request, 'compras.html', {'compras': compras})
+
+
+ 
+@api_view(['POST'])
+def checkout(request):
+    try:
+        carrito_items = Carrito.objects.filter(user=request.user)
+        metodo_pago = MetodoPago.objects.get(id_metodoPago=request.data['metodo_pago'])
+
+        if not carrito_items.exists():
+            return Response({'error': 'El carrito está vacío.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Aquí agregarías la lógica para procesar el pago y registrar la compra
+        for item in carrito_items:
+            item.estado = 'comprado'  # Suponiendo que tienes un campo `estado` para marcar la compra
+            item.save()
+
+        return Response({'message': 'Compra realizada con éxito.'}, status=status.HTTP_200_OK)
+    except MetodoPago.DoesNotExist:
+        return Response({'error': 'Método de pago no válido.'}, status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    
 class LoginView(TokenObtainPairView):
     serializer_class = LoginSerializer
 
@@ -218,6 +256,12 @@ def user_api_view(request):
             usuario_serializer.save()
             return Response(usuario_serializer.data, status=status.HTTP_201_CREATED)
         return Response(usuario_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def obtener_usuario_autenticado(request):
+    usuario = request.user
+    usuario_serializer = UsuariosSerializer(usuario)
+    return Response(usuario_serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])

@@ -138,18 +138,30 @@
               </div>
             </div>
           </div>
-          <div class="card mb-4 mb-lg-0">
-            <div class="card-body">
-              <p><strong>Aceptamos</strong></p>
-              <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg" alt="Visa">
-              <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg" alt="American Express">
-              <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg" alt="Mastercard">
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4">
-            <div class="card-header py-3">
+          <div class="col-md-4">
+            <div class="card mb-4 mb-lg-0">
+              <div class="card-body">
+                <p><strong>Aceptamos</strong></p>
+                <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg" alt="Visa">
+                <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg" alt="American Express">
+                <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg" alt="Mastercard">
+              </div>
+              <div class="card mb-4">
+                <div class="card-header py-3">
+                  <div>
+                    <label for="metodoPago">Método de Pago:</label>
+                    <select id="metodoPago" [(ngModel)]="metodoPagoSeleccionado" class="form-control">
+                      <option *ngFor="let metodo of metodosPago" [value]="metodo.id_metodoPago">
+                        {{ metodo.nombrePago }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+            
+              </div>
+              
+          <div>
+            <div class="card mb-4 mb-lg-0">
               <h5 class="mb-0">Resumen</h5>
             </div>
             <div class="card-body">
@@ -166,6 +178,10 @@
           </div>
         </div>
       </div>
-    
+        </div>
+      
+
+        </div>
+      
   </section>
   

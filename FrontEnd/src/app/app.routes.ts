@@ -11,6 +11,7 @@ import { ProfesionalComponent } from './pages/nosotros/profesional/profesional.c
 import { DestinosCartComponent } from './pages/destinos-cart/destinos-cart.component';
 import { DestinosDetailsComponent } from './pages/destinos-details/destinos-details.component';
 import { AuthGuard } from '../app/interceptors/auth.guard'; // Asegúrate de que la ruta del import sea correcta
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,7 +24,9 @@ export const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
   { path: 'nosotros', component: NosotrosComponent },
   { path: 'nosotros/:id', component: ProfesionalComponent },
+  { path: 'app-dashboard', component: DashboardComponent },
   { path: '**', component: Pagina404Component },
+  
 ];
 
 
