@@ -88,6 +88,9 @@ Este backend proporciona las siguientes funcionalidades:
  
 ![image](https://github.com/TravelDreams2024/ISPC2024/assets/45200064/8af0fdcb-3d91-4aae-a7a0-ae1515a61357)
 
+![image](https://github.com/TravelDreams2024/ISPC2024/assets/45200064/d88a37ab-6798-4d6f-bcd2-70ba544da1a5)
+
+
 ## Base de Datos
 
 Se adjuntará el script MySQL para insertar datos mínimos y necesarios en la base de datos a efectos de poder testear el funcionamiento de la API REST.
