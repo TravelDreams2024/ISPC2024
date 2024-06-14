@@ -26,7 +26,8 @@ Oro, Elias
 Ortiz, Fernando Ariel   
 Soto Valenzuela, Juan Gabriel  
 
-![ISPC_frontend_Angular17](https://github.com/TravelDreams2024/ISPC2024/assets/45200064/495a9b5e-54c2-4b95-8310-c5c6aac4d503)
+
+![travel_dreams_front](https://github.com/TravelDreams2024/ISPC2024/assets/45200064/ad03b552-ba52-49b8-9bb9-36955ba119d6)
 
 
 Link del Repositorio de Referencia (Anterior):
