@@ -19,13 +19,11 @@ El objetivo principal del proyecto es ofrecer a los usuarios una experiencia de 
 
 Cantarino, Emmanuel  
 Cascallares, Facundo  
-De Elejalde, Franco Agustín Trivini  
 Fernandez, Claudio Ranses  
 González, Natalia  
 Navarrete, Romina Gabriela  
 Oro, Elias  
-Ortiz, Fernando Ariel  
-Ramos, Fernando  
+Ortiz, Fernando Ariel   
 Soto Valenzuela, Juan Gabriel  
 
 ![ISPC_frontend_Angular17](https://github.com/TravelDreams2024/ISPC2024/assets/45200064/495a9b5e-54c2-4b95-8310-c5c6aac4d503)
