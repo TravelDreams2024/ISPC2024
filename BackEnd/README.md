@@ -97,3 +97,6 @@ INSERT INTO roles (name) VALUES ('Cliente'), ('Vendedor'), ('Administrador');
 INSERT INTO users (username, email, password, role_id) VALUES 
 ('admin', 'admin@example.com', 'hashed_password', 3),
 ('cliente', 'cliente@example.com', 'hashed_password', 1);
+
+![image](https://github.com/TravelDreams2024/ISPC2024/assets/45200064/8af0fdcb-3d91-4aae-a7a0-ae1515a61357)
+
