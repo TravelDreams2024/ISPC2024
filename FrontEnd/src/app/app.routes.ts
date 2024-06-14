@@ -1,4 +1,3 @@
-/*app.routes.ts*/
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { IniciarSesionComponent } from './pages/auth/iniciar-sesion/iniciar-sesion.component';
@@ -10,7 +9,7 @@ import { Pagina404Component } from './pages/pagina404/pagina404.component';
 import { ProfesionalComponent } from './pages/nosotros/profesional/profesional.component';
 import { DestinosCartComponent } from './pages/destinos-cart/destinos-cart.component';
 import { DestinosDetailsComponent } from './pages/destinos-details/destinos-details.component';
-import { AuthGuard } from '../app/interceptors/auth.guard'; // Asegúrate de que la ruta del import sea correcta
+import { AuthGuard } from './interceptors/auth.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
@@ -18,15 +17,12 @@ export const routes: Routes = [
   { path: 'Home', component: HomeComponent },
   { path: 'destinos', component: DestinosComponent },
   { path: 'destinos/:id', component: DestinosDetailsComponent },
-  { path: 'destinos-cart', component: DestinosCartComponent, canActivate: [AuthGuard] }, // Ruta protegida
+  { path: 'destinos-cart', component: DestinosCartComponent, canActivate: [AuthGuard] },
+  { path: 'app-dash', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'contacto', component: ContactoComponent },
   { path: 'iniciar-sesion', component: IniciarSesionComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'nosotros', component: NosotrosComponent },
   { path: 'nosotros/:id', component: ProfesionalComponent },
-  { path: 'app-dashboard', component: DashboardComponent },
-  { path: '**', component: Pagina404Component },
-  
+  { path: '**', component: Pagina404Component }
 ];
-
-

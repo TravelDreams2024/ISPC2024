@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { CarritoService } from '../../services/carrito.service';
 import { Destino } from '../../models/destinos';
 import { FormsModule } from '@angular/forms';
-
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-destinos-cart',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule, RouterModule],
   templateUrl: './destinos-cart.component.html',
   styleUrls: ['./destinos-cart.component.css']
 })
@@ -20,7 +20,7 @@ export class DestinosCartComponent implements OnInit {
   metodosPago: any[] = [];
   metodoPagoSeleccionado: string = '';
 
-  constructor(private carritoService: CarritoService) {}
+  constructor(private carritoService: CarritoService, private router: Router) {}
 
   ngOnInit(): void {
     this.obtenerCarrito();
@@ -126,6 +126,7 @@ export class DestinosCartComponent implements OnInit {
       next: (response: any) => {
         alert('Compra realizada con éxito.');
         this.obtenerCarrito();  // Limpiar el carrito después del checkout
+        this.router.navigate(['/destinos']);  // Redirige a la página de destinos
       },
       error: (error: any) => {
         console.error('Error en el checkout', error);

@@ -11,8 +11,9 @@ import { NosotrosService } from '../../services/nosotros.service'; // Ajusta la 
   styleUrls: ['./nosotros.component.css']
 })
 export class NosotrosComponent {
+  mision = 'Desde hace 20 años, Travel Dreams ha sido la brújula que guía a aventureros de todas las edades en sus viajes más esperados. Nuestra misión trasciende un simple itinerario; es una promesa de aventura, descubrimiento y recuerdos que perduran toda la vida.';
   profesionalList: any[] = [];
-  defaultImage: string = 'ruta/a/imagen/default.png'; // Añade una ruta de imagen por defecto
+  defaultImage: string = 'ruta/a/imagen/default.png'; // Ruta de imagen por defecto
 
   constructor(private nosotrosService: NosotrosService) {
     this.nosotrosService.obtenerProfesionales().subscribe({
@@ -26,6 +27,6 @@ export class NosotrosComponent {
   }
 
   trackById(index: number, nosotros: any): number {
-    return nosotros.id_nosotros; // Asegúrate de que el nombre de la propiedad coincida con tu API
+    return nosotros.id_nosotros; 
   }
 }

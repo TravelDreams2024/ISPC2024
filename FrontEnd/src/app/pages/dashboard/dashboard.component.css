@@ -1,28 +1,3 @@
-.sidebar {
-height: 100%;
-width: 250px;
-position: fixed;
-top: 0;
-left: 0;
-background-color: #240B5C;
-padding-top: 90px;
-}
-.sidebar ul {
-list-style-type: none;
-padding: 50;
-}
-.sidebar li {
-padding: 10px;
-color: #fff;
-}
-.sidebar a {
-color: #fff;
-text-decoration: none;
-}
-
-.container-fluid {
-padding-top: 70px; 
-}
 
 .background {
 background-color:  #240B5C;
@@ -35,3 +10,28 @@ border-bottom: 5px solid #fff;
 .sidebar-icon {
 margin-right: 15px;
 }
+.container {
+    margin-top: 20px;
+  }
+  
+  h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .table {
+    margin-bottom: 20px;
+  }
+  
+  .alert {
+    margin-top: 20px;
+  }
+  
+  .sidebar {
+    margin-top: 20px;
+  }
+  
+  .user-avatar img {
+    border-radius: 50%;
+  }
+  
